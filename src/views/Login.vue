@@ -3,22 +3,9 @@
     <div class="row">
       <div class="col-6 vh-100">
         <div class="row justify-content-center">
-          <div class="col-xl-5">
-            <form action="" style="margin-top: 30vh">
-              <p class="fw-bold mb-5" style="font-size: 22px">ورود به <span class="text-primary"> فارس گیمر</span></p>
-
-              <div class="col-xl-12 mb-4">
-              <label for="mobile" class="small text-muted mb-4" style="font-size: 12px">شماره همراه</label>
-              <input id="mobile" class="form-control mb-5 en" type="text">
-              </div>
-              <div class="col-xl-12 mb-4">
-                <button class="btn btn-primary py-2 px-5" type="submit">
-                  <p class="my-1">تایید</p>
-                </button>
-              </div>
-              <p class="small"  style="font-size: 16px">حساب کاربری ندارید؟ <a class="text-primary">ثبت نام</a></p>
-
-            </form>
+          <div id="loginForm" class="col-xl-5">
+            <login-mobile/>
+            <login-code/>
           </div>
         </div>
       </div>
@@ -29,22 +16,88 @@
 </template>
 
 <script>
+import LoginMobile from "@/views/LoginMobile";
+import LoginCode from "@/views/LoginCode";
+
 export default {
-  name: "Login"
+  name: "Login",
+  components: {LoginMobile, LoginCode},
+  data() {
+    return {
+      send: false,
+      errors: [],
+    }
+  },
+  mounted() {
+    document.querySelector('#loginMobile').classList.remove('d-none');
+    document.querySelector('#loginCode').classList.add('d-none');
+
+    document.querySelector('#resend').classList.remove('text-primary');
+    document.querySelector('#resend').setAttribute('disabled', 'disabled');
+    document.querySelector('#resend').style.cursor = 'none';
+  },
+  methods: {
+    sendCode() {
+
+      this.errors = [];
+      if (document.querySelector('#mobile').value.length !== 11){
+        this.errors.push('شماره موبایل باید 11 رقم باشد.')
+      }
+      if (!document.querySelector('#mobile').value.toString().startsWith('09')){
+        this.errors.push('شماره موبایل باید با 09 شروع شود.')
+
+      }
+      if (document.querySelector('#mobile').value.length === 11 && document.querySelector('#mobile').value.toString().startsWith('09') ){
+        //SEND API....
+
+      document.querySelector('#loginMobile').classList.add('d-none');
+      document.querySelector('#loginCode').classList.remove('d-none');
+      this.count();
+      }
+    },
+    count() {
+      document.querySelector('#resend').classList.remove('text-primary');
+      document.querySelector('#resend').setAttribute('disabled', 'disabled');
+      document.querySelector('#resend').style.cursor = 'none';
+      let time = 60;
+      setInterval(function () {
+        if (time > 0) {
+          time--;
+          if (time < 10) {
+            document.querySelector('#time').innerText = '0' + time;
+          } else {
+            document.querySelector('#time').innerText = time;
+          }
+
+
+        } else if (time == 0) {
+          document.querySelector('#resend').classList.add('text-primary');
+          document.querySelector('#resend').removeAttribute('disabled');
+          document.querySelector('#resend').style.cursor = 'pointer';
+          time = null;
+          // clearInterval();
+        }
+
+      }, 1000);
+
+
+    },
+
+    reSendCode() {
+      //api......
+
+      if (!document.querySelector('#resend').hasAttribute('disabled')) {
+        this.count();
+        document.querySelector('#resend').setAttribute('disabled', 'disabled');
+        document.querySelector('#resend').classList.remove('text-primary');
+        document.querySelector('#resend').style.cursor = 'none';
+
+      }
+    }
+  }
 }
 </script>
 
 <style scoped>
-button{
-  height: 52px;
-  width: 140px;
-  border-radius: 8px;
-  background-image: conic-gradient(from 30deg, #7007FA 10%, #9d56ff 120%, #7007FA 100%);
 
-}
-input{
-  height: 50px;
-  border-radius: 8px;
-
-}
 </style>
