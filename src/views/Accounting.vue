@@ -1,7 +1,6 @@
 <template>
   <div class="d-flex justify-content-between">
     <h3 class=" fw-bold mb-0" style="line-height: 50px">حسابداری</h3>
-
   </div>
   <hr class="text-muted mb-5 mt-2">
 
