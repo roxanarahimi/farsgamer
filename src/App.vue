@@ -76,7 +76,7 @@ th,td{
 }
 #page_content {
   width: calc(100% - 300px - 5rem);
-  min-height: 500px !important
+  min-height: 500px !important;
 }
 .side_bar {
   width: calc(300px + 5rem);
@@ -93,7 +93,8 @@ th,td{
 @media(max-width: 991px){
   #page_content {
     width: 100%;
-    min-height: 500px !important
+    min-height: 500px !important;
+
   }
   .side_bar {
     width: 100% !important;
