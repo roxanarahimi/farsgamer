@@ -46,7 +46,7 @@ export default {
         this.errors.push('شماره موبایل باید با 09 شروع شود.')
 
       }
-      if (document.querySelector('#mobile').value.length === 11 && document.querySelector('#mobile').value.toString().startsWith('09') ){
+      if (this.errors.length === 0) {
         //SEND API....
 
       document.querySelector('#loginMobile').classList.add('d-none');

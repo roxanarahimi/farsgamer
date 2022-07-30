@@ -1,10 +1,10 @@
 <template>
-  <div id="login">
+  <div id="register">
     <div class="row">
       <div class="col-6 vh-100">
         <div class="row justify-content-center">
           <div id="loginForm" class="col-xl-5">
-            <login-mobile/>
+            <register-form/>
             <login-code/>
           </div>
         </div>
@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import LoginMobile from "@/views/LoginMobile";
 import LoginCode from "@/views/LoginCode";
+import RegisterForm from "@/views/RegisterForm";
 
 export default {
-  name: "Login",
-  components: {LoginMobile, LoginCode},
+  name: "Register",
+  components: {RegisterForm, LoginCode},
   data() {
     return {
       send: false,
@@ -29,7 +29,8 @@ export default {
     }
   },
   mounted() {
-    document.querySelector('#loginMobile').classList.remove('d-none');
+    // document.querySelector('#loginMobile').classList.remove('d-none');
+    document.querySelector('#registerForm').classList.remove('d-none');
     document.querySelector('#loginCode').classList.add('d-none');
 
     document.querySelector('#resend').classList.remove('text-primary');
@@ -39,19 +40,26 @@ export default {
   methods: {
     sendCode() {
       this.errors = [];
-      if (document.querySelector('#mobile').value.length !== 11){
+      if (document.querySelector('#mobile').value.length !== 11) {
         this.errors.push('شماره موبایل باید 11 رقم باشد.')
       }
-      if (!document.querySelector('#mobile').value.toString().startsWith('09')){
+      if (!document.querySelector('#mobile').value.toString().startsWith('09')) {
         this.errors.push('شماره موبایل باید با 09 شروع شود.')
 
       }
-      if (document.querySelector('#mobile').value.length === 11 && document.querySelector('#mobile').value.toString().startsWith('09') ){
+     if (document.querySelector('#user_name').value.length === 0) {
+        this.errors.push('نام کاربری را وارد کنید.')
+      }
+     if (document.querySelector('#user_name').value.length < 3 && document.querySelector('#user_name').value.length !== 0) {
+        this.errors.push('نام کاربری باید بیش از 2 کاراکتر باشد')
+
+      }
+      if (this.errors.length === 0) {
         //SEND API....
 
-      document.querySelector('#loginMobile').classList.add('d-none');
-      document.querySelector('#loginCode').classList.remove('d-none');
-      this.count();
+        document.querySelector('#registerForm').classList.add('d-none');
+        document.querySelector('#loginCode').classList.remove('d-none');
+        this.count();
       }
     },
     count() {
