@@ -1,12 +1,14 @@
 <template>
   <h3 class="mb-5 fw-bold">آگهی ها</h3>
   <div class="row px-3">
-    <div class="col-lg-12 text-center text-xl-start d-flex-wrap  justify-content-center d-xl-flex justify-content-lg-start  px-1 " >
-      <button style="min-width: 160px;" class="status px-4 py-2 btn btn-active ms-1 mb-2 mb-lg-0"  @click="adsByStatus('all')" id="all"> همه اگهی ها</button>
-      <button style="min-width: 160px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0" @click="adsByStatus('confirmed')" id="confirmed">تایید شده</button>
-      <button style="min-width: 160px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0" @click="adsByStatus('pending')" id="pending">در انتظار تایید</button>
-      <button style="min-width: 160px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0"  @click="adsByStatus('rejected')" id="rejected">رد شده</button>
-      <button style="min-width: 160px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0"  @click="adsByStatus('sold')" id="sold">فروخته شده</button>
+    <div class="col-lg-12  px-1 " style="height: 80px; overflow-x: auto"  >
+      <div style=" width: 940px"  >
+        <button style="min-width: 160px;" class="status px-4 py-2 btn btn-active ms-1 mb-2 mb-lg-0 d-inline"  @click="adsByStatus('all')" id="all"> همه اگهی ها</button>
+        <button style="min-width: 160px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0 d-inline" @click="adsByStatus('confirmed')" id="confirmed">تایید شده</button>
+        <button style="min-width: 160px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0 d-inline" @click="adsByStatus('pending')" id="pending">در انتظار تایید</button>
+        <button style="min-width: 160px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0 d-inline"  @click="adsByStatus('rejected')" id="rejected">رد شده</button>
+        <button style="min-width: 160px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0 d-inline"  @click="adsByStatus('sold')" id="sold">فروخته شده</button>
+      </div>
     </div>
     <hr class="text-muted  mt-2">
     <div class="col-12 p-0 m-0" v-if="true">
