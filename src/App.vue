@@ -6,7 +6,7 @@
     <top-bar/>
     <div class="w-100 d-flex">
       <side-bar/>
-      <div id="page_content" class="px-3 px-lg-5 px-lg-0">
+      <div id="page_content" class="px-3 px-lg-2 px-lg-0">
         <!--          //content-->
         <div class="container-fluid p-0 m-0">
        <router-view />

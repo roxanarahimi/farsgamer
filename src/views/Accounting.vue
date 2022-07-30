@@ -6,7 +6,7 @@
   <hr class="text-muted mb-5 mt-2">
 
   <div class="row flex-row-reverse px-3">
-    <div class="col-lg-3 p-0 m-0 px-lg-3 mb-3">
+    <div class=" col-xxl-3 p-0 m-0 px-xxl-3 mb-3">
     <div class="card h-100">
       <div class="card-body">
         <div class="row">
@@ -57,9 +57,8 @@
     </div>
   </div>
 
-    <div class="col-lg-9 p-0 m-0 border-lg rounded  mb-3 "  style="min-height: 600px" v-if="true">
-
-      <table class="table mb-0 rounded-top text-muted d-none d-lg-block">
+    <div class=" col-xxl-9 p-0 m-0 border rounded  mb-3 d-none d-lg-block"  style="min-height: 600px" v-if="true">
+      <table class="table mb-0 rounded-top text-muted">
         <thead class="bg-light rounded-top">
         <tr class=" rounded-top">
           <th scope="col" class=" rounded-top">تاریخ</th>
@@ -83,29 +82,29 @@
         </tr>
         </tbody>
       </table>
-      <div class="d-lg-none">
-        <div v-for="item in 3" :key="item" class="card mb-3 " >
-          <div class="card-header">
+    </div>
+    <div class="col-lg-9 p-0 m-0 border-lg rounded  mb-3 d-lg-none"  style="min-height: 600px" v-if="true">
+      <div v-for="item in 3" :key="item" class="card mb-3 " >
+        <div class="card-header">
 
-            <div class="d-flex justify-content-between py-2">
-              <small>تاریخ: 03-02-1401</small>
-              <small>ش پیگیری: 12345678</small>
+          <div class="d-flex justify-content-between py-2">
+            <small>تاریخ: 03-02-1401</small>
+            <small>ش پیگیری: 12345678</small>
 
-            </div>
           </div>
-          <div class="card-body px-0">
-            <div class="d-flex justify-content-between px-3">
-              <small>وضعیت</small>
-              <small class="text-primary">برداشت وجه</small>
-            </div>
-            <hr>
-            <div class="d-flex justify-content-between px-3">
-              <p class="h5">مبلغ</p>
-              <p class="text-primary h5">100,000 تومان</p>
-            </div>
-          </div>
-
         </div>
+        <div class="card-body px-0">
+          <div class="d-flex justify-content-between px-3">
+            <small>وضعیت</small>
+            <small class="text-primary">برداشت وجه</small>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between px-3">
+            <p class="h5">مبلغ</p>
+            <p class="text-primary h5">100,000 تومان</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
