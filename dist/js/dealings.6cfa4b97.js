@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkfars_gamer"]=self["webpackChunkfars_gamer"]||[]).push([[149],{5072:function(n,e,r){function a(n,e,r,a,u,s){return null}r.r(e),r.d(e,{default:function(){return f}});var u={name:"Dealings"},s=r(89);const t=(0,s.Z)(u,[["render",a]]);var f=t}}]);
-//# sourceMappingURL=dealings.6cfa4b97.js.map
