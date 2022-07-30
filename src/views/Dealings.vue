@@ -1,10 +1,12 @@
 <template>
   <h3 class="mb-5 fw-bold">معاملات</h3>
   <div class="row px-3">
-    <div class="col-lg-12 text-center text-xl-start d-flex-wrap  justify-content-center d-xl-flex justify-content-lg-start  px-1 " >
-      <button style="min-width: 160px;" class="status px-4 py-2 btn btn-active ms-1 mb-2 mb-lg-0" @click="dealsByType('all')" id="all"> همه معاملات</button>
-      <button style="min-width: 160px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0" @click="dealsByType('buy')" id="buy">خرید</button>
-      <button style="min-width: 160px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0" @click="dealsByType('sell')" id="sell">فروش</button>
+    <div class="col-lg-12 text-center px-1 "  style="height: 80px; overflow-x: auto"  >
+          <div style=" width: 550px"  >
+          <button style="min-width: 160px;" class="status px-4 py-2 btn btn-active ms-1 mb-2 mb-lg-0" @click="dealsByType('all')" id="all"> همه معاملات</button>
+          <button style="min-width: 160px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0" @click="dealsByType('buy')" id="buy">خرید</button>
+          <button style="min-width: 160px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0" @click="dealsByType('sell')" id="sell">فروش</button>
+         </div>
       </div>
     <hr class="text-muted  mt-2">
     <div class="col-12 " v-if="true">
