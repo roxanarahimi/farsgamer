@@ -39,11 +39,7 @@
 
     </div>
   </div>
-
-
   <hr class="text-muted  mx-3 mx-lg-5  mb-5">
-
-
 </template>
 
 <script>
