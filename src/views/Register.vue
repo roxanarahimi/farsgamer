@@ -1,15 +1,15 @@
 <template>
-  <div id="register">
+  <div id="register" class="container-fluid p-0 m-0">
     <div class="row">
-      <div class="col-6 vh-100">
+      <div class="col-md-10 col-lg-6 vh-100 ">
         <div class="row justify-content-center">
-          <div id="loginForm" class="col-xl-5">
+            <div id="Form" class="col-lg-10 col-xxl-6 p-5">
             <register-form/>
             <login-code/>
           </div>
         </div>
       </div>
-      <div class="col-6 bg-primary vh-100"></div>
+      <div class="d-none d-lg-block col-lg-6 bg-primary vh-100"></div>
 
     </div>
   </div>

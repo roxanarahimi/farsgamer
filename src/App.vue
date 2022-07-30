@@ -6,7 +6,7 @@
     <top-bar/>
     <div class="w-100 d-flex">
       <side-bar/>
-      <div id="page_content" class="">
+      <div id="page_content" class="px-5 px-lg-0">
         <!--          //content-->
         <div class="container-fluid p-0 m-0">
        <router-view />
@@ -64,12 +64,19 @@ textarea
   border-radius: 8px !important;
 }
 
+
+label{
+  font-size: 12px;
+}
+
+th,td{
+  height: 60px;
+  line-height: 50px;
+  text-align: center;
+}
 #page_content {
   width: calc(100% - 300px - 5rem);
   min-height: 500px !important
-}
-label{
-  font-size: 12px;
 }
 .side_bar {
   width: calc(300px + 5rem);
@@ -82,9 +89,14 @@ label{
 .pointer{
   cursor: pointer;
 }
-th,td{
-  height: 60px;
-  line-height: 50px;
-  text-align: center;
+
+@media(max-width: 991px){
+  #page_content {
+    width: 100%;
+    min-height: 500px !important
+  }
+  .side_bar {
+    width: 100% !important;
+  }
 }
 </style>

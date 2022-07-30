@@ -6,12 +6,12 @@
   <hr class="text-muted mb-5 mt-2">
 
   <div class="row px-3">
-    <div class="col-9 p-0 m-0 border rounded "  style="min-height: 600px" v-if="true">
+    <div class="col-lg-9 p-0 m-0 border rounded "  style="min-height: 600px" v-if="true">
 
       <table class="table mb-0 rounded-top text-muted">
         <thead class="bg-light rounded-top">
         <tr class=" rounded-top">
-          <th scope="col" class=" rounded-top">پیام های اخیر</th>
+          <th  class=" rounded-top">پیام های اخیر</th>
 
         </tr>
         </thead>
@@ -20,7 +20,7 @@
         </tbody>
       </table>
     </div>
-    <div class="col-3">
+    <div class="col-lg-3">
       <div class="card h-100 border-0">
         <div class="card-body  pt-0">
           <div class="row">
