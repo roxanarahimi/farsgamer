@@ -1,9 +1,9 @@
 <template>
   <div class="row">
-    <div class="col-12 col-lg-4 px-5 mb-3 mb-lg-0">
+    <div class="col-12 col-lg-4 px-4 px-lg-5 mb-3 mb-lg-0">
       <input type="text" class="form-control" id="search" placeholder="جستوجوی در همه اکانت ها">
     </div>
-    <div class="col-12 col-lg-8 px-5 d-flex justify-content-between flex-row-reverse" style="font-size: 22px">
+    <div class="col-12 col-lg-8 px-4 px-lg-5 d-flex justify-content-between flex-row-reverse" style="font-size: 22px">
      <div class="">
 
 
@@ -41,7 +41,7 @@
   </div>
 
 
-  <hr class="text-muted mx-5 mb-5">
+  <hr class="text-muted  mx-3 mx-lg-5  mb-5">
 
 
 </template>
