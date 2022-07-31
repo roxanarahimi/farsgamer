@@ -13,18 +13,17 @@
       <div class="mx-auto row  py-5 pt-2 ">
 
         <div class="card p-0">
-          <div class="card-header d-flex justify-content-between">
-
-            <div class="d-flex">
-              <p class="mb-0 mt-2 ms-5">تاریخ: 03-05-1401</p>
-              <p class="mb-0 mt-2 me-5">شناسه معامله: 1234561401</p>
-
-
+          <div class="card-header d-flex justify-content-between d-lg-block">
+            <div class="row">
+              <div class="d-flex justify-content-between col-lg-5">
+                <p class="mb-0 mt-2 ms-lg-5">تاریخ: 03-05-1401</p>
+                <p class="mb-0 mt-2 me-lg-5">شناسه معامله: 1234561401</p>
+              </div>
+              <div class="d-flex justify-content-between justify-content-lg-endcol-lg-6">
+                <p class="mb-0 mt-2 ms-2"> وضعیت معامله: تایید اطلاعات</p>
+                <button class="btn btn-success py-0 text-light">معامله خرید</button>
+              </div>
             </div>
-            <div class="d-flex">
-  <p class="mb-0 mt-2 ms-2"> وضعیت معامله: تایید اطلاعات</p>
-  <button class="btn btn-success text-light">معامله خرید</button>
-</div>
           </div>
           <div class="card-body d-flex ">
 
