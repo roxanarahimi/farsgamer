@@ -1,5 +1,5 @@
 <template>
-  <form id="loginMobile" class="" action="" style="margin-top: 30vh">
+  <form id="loginMobile" class="" style="margin-top: 30vh">
     <p class="fw-bold mb-5" style="font-size: 22px">ورود به <span class="text-primary"> فارس گیمر</span></p>
 
     <div class="col-xl-12 mb-4">
@@ -12,7 +12,7 @@
         <p class="my-1">تایید</p>
       </button>
     </div>
-    <p class="small"  style="font-size: 16px">حساب کاربری ندارید؟ <a class="text-primary">ثبت نام</a></p>
+    <p class="small"  style="font-size: 16px">حساب کاربری ندارید؟  <router-link to="/register" class="text-primary">ثبت نام</router-link></p>
 
   </form>
 </template>

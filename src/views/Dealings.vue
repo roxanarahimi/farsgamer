@@ -2,10 +2,10 @@
   <h3 class="mb-5 fw-bold">معاملات</h3>
   <div class="row px-3">
     <div class="col-lg-12 text-center px-1 "  style="height: 80px; overflow-x: auto"  >
-          <div style=" width: 550px"  >
-          <button style="min-width: 160px;" class="status px-4 py-2 btn btn-active ms-1 mb-2 mb-lg-0" @click="dealsByType('all')" id="all"> همه معاملات</button>
-          <button style="min-width: 160px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0" @click="dealsByType('buy')" id="buy">خرید</button>
-          <button style="min-width: 160px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0" @click="dealsByType('sell')" id="sell">فروش</button>
+          <div style=" width: 490px"  >
+          <button style="min-width: 140px;" class="status px-4 py-2 btn btn-active ms-1 mb-2 mb-lg-0" @click="dealsByType('all')" id="all"> همه معاملات</button>
+          <button style="min-width: 140px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0" @click="dealsByType('buy')" id="buy">خرید</button>
+          <button style="min-width: 140px;" class="status px-4 py-2 btn text-muted ms-1 mb-2 mb-lg-0" @click="dealsByType('sell')" id="sell">فروش</button>
          </div>
       </div>
     <hr class="text-muted  mt-2">
@@ -25,14 +25,24 @@
               </div>
             </div>
           </div>
-          <div class="card-body d-flex ">
+          <div class="card-body ">
 
-            <div class="rounded" style="padding-top: 20px; background-color: #eeeeee; width: 105px; height: 105px">
-              <img src="img/sample.jpg" class="w-100">
-            </div>
 
-            <h4 class="mx-3 my-5" >اکانت فورتنایت از سیزن دو</h4>
-            <h6 class="mx-3 my-5 text-muted" >نام فروشنده : <span class="text-primary">roxana</span></h6>
+
+           <div class="row px-3">
+             <div class="rounded col-5 col-lg-2 ms-3 px-0 py-4" style="padding-top: 20px; background-color: #eeeeee;">
+             <img src="img/sample.jpg" class="w-100">
+           </div>
+
+             <div class="col-7 col-lg-10 row">
+               <h4 class="col-lg-7 mt-5" >اکانت فورتنایت از سیزن دو فورتنایت از سیزن دو</h4>
+               <h6 class="col-lg-5  my-3 my-lg-5 pt-2 text-muted float-end " >نام فروشنده :
+                 <span class="text-primary">roxana</span></h6>
+             </div>
+             <div class="col-12">
+               <h6 class="text-primary w-100 text-start"> مشاهده معامله <i class="bi bi-chevron-left"></i></h6>
+             </div>
+           </div>
 
           </div>
         </div>

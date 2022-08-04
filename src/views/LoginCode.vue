@@ -1,16 +1,16 @@
 <template>
-  <form id="loginCode" class="d-none" action="" style="margin-top: 30vh">
-    <p class="fw-bold mb-5" style="font-size: 22px">کد ارسال شده به شماره <span class="text-primary"> 09032313681 </span> را وارد کنید </p>
+  <form id="loginCode" class="d-none"  style="margin-top: 30vh">
+    <p class="fw-bold mb-5" style="font-size: 22px">کد ارسال شده به شماره <span id="sent" class="text-primary mx-2"></span> را وارد کنید </p>
 
     <div class="col-xl-12 mb-2">
-      <label for="mobile" class="small text-muted mb-4" style="font-size: 12px">کد ارسالی</label>
-      <input id="mobile" class="form-control en" type="text">
+      <label for="code" class="small text-muted mb-4" style="font-size: 12px">کد ارسالی</label>
+      <input id="code" class="form-control en" type="text">
     </div>
     <div class="d-flex justify-content-between mb-5"  style="font-size: 12px">
-      <p class="small text-muted">تصحیح شماره همراه</p>
+      <router-link to="/login" class="small text-muted">تصحیح شماره همراه</router-link>
 
       <p class="small text-black-50 d-flex justify-content-between">
-        <span @click="this.$parent.reSendCode" id="resend" style="display:inline-block;">
+        <span @click.prevent="this.$parent.reSendCode" id="resend" style="display:inline-block;">
           ارسال مجدد کد
         </span>
       <span style="display:inline-block;width: 40px">
@@ -19,8 +19,8 @@
       </p>
     </div>
     <div class="col-xl-12 mb-4">
-      <button class="btn btn-primary py-2 px-5" type="submit">
-        <p class="my-1">تایید</p>
+      <button class="btn btn-primary py-2 px-5"  @click.prevent="this.$parent.login" type="submit">
+        <p class="my-1" >تایید</p>
       </button>
     </div>
     <p class="small"  style="font-size: 16px">حساب کاربری ندارید؟ <a class="text-primary">ثبت نام</a></p>

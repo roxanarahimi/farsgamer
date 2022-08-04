@@ -29,6 +29,13 @@ export default {
     }
   },
   mounted() {
+    // localStorage.clear();
+
+    if (localStorage.getItem('token')) {
+      this.$router.push({name: 'Dashboard'})
+    } else {
+      localStorage.clear();
+    }
     document.querySelector('#loginMobile').classList.remove('d-none');
     document.querySelector('#loginCode').classList.add('d-none');
 
@@ -39,19 +46,32 @@ export default {
   methods: {
     sendCode() {
       this.errors = [];
-      if (document.querySelector('#mobile').value.length !== 11){
+      if (document.querySelector('#mobile').value.length !== 11) {
         this.errors.push('شماره موبایل باید 11 رقم باشد.')
       }
-      if (!document.querySelector('#mobile').value.toString().startsWith('09')){
+      if (!document.querySelector('#mobile').value.toString().startsWith('09')) {
         this.errors.push('شماره موبایل باید با 09 شروع شود.')
 
       }
       if (this.errors.length === 0) {
-        //SEND API....
-
-      document.querySelector('#loginMobile').classList.add('d-none');
-      document.querySelector('#loginCode').classList.remove('d-none');
-      this.count();
+        axios.post('https://server.elfiro.com/api/v1/auth/send-verification-code', {
+          phone: document.querySelector('#mobile').value,
+        })
+            .then((response) => {
+              if (response.status === 200) {
+                document.querySelector('#sent').value = document.querySelector('#mobile').value;
+                document.querySelector('#loginMobile').classList.add('d-none');
+                document.querySelector('#loginCode').classList.remove('d-none');
+                this.count()
+              }
+            })
+            .catch((error) => {
+              console.log(error)
+              console.log(error.message)
+              if (error.message === 'Request failed with status code 422') {
+                this.errors.push('شما عضو نیستید لطفا ابتدا ثبت نام کنید')
+              }
+            });
       }
     },
     count() {
@@ -62,10 +82,12 @@ export default {
       setInterval(function () {
         if (time > 0) {
           time--;
-          if (time < 10) {
+          if (time < 10 && document.querySelector('#time')) {
             document.querySelector('#time').innerText = '0' + time;
-          } else {
+          } else if (time => 10 && document.querySelector('#time')) {
             document.querySelector('#time').innerText = time;
+          } else if (!document.querySelector('#time')) {
+            stop();
           }
 
 
@@ -78,20 +100,39 @@ export default {
         }
 
       }, 1000);
-
-
     },
 
     reSendCode() {
-      //api......
-
       if (!document.querySelector('#resend').hasAttribute('disabled')) {
-        this.count();
+        this.sendCode();
         document.querySelector('#resend').setAttribute('disabled', 'disabled');
         document.querySelector('#resend').classList.remove('text-primary');
         document.querySelector('#resend').style.cursor = 'none';
 
       }
+    },
+    login() {
+      if (this.errors.length === 0) {
+        axios.post('https://server.elfiro.com/api/v1/auth/login', {
+          phone: document.querySelector('#mobile').value,
+          password: document.querySelector('#code').value,
+        })
+            .then((response) => {
+              console.log(response);
+              console.log(response.data.data.login.user.token);
+              localStorage.setItem('token', response.data.data.login.user.token)
+              localStorage.setItem('user', JSON.stringify(response.data.data.login.user))
+              this.$router.push({name: 'Dashboard'});
+            })
+            .catch((error) => {
+              console.log(error)
+              console.log(error.message)
+              if (error.message === 'Request failed with status code 429') {
+                this.errors.push('کد وارد شده اشتباه است')
+              }
+            });
+      }
+
     }
   }
 }

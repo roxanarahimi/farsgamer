@@ -5,58 +5,95 @@
       <div class="text-center">
         <img src="/img/avatar.png" style="width: 92px; height:92px;" alt="">
 
-<!--        <h4 class="fw-bolder text-primary text-center mt-2">roxana</h4>-->
-        <p class="text-black-50 text-center mb-1 mt-3"><i class="bi bi-person"></i> ورود/ ثبت نام</p>
+        <h4 class="fw-bolder text-primary text-center mt-2">roxana</h4>
         <btn-primary-shadow>
           <i class="bi bi-plus d-inline-block" style="font-size: 20px"></i>ثبت آگهی
         </btn-primary-shadow>
 
 
       </div>
-      <div class="row">
-        <div class="">
-          <div  class=" py-2 mt-5 mb-3 d-flex  justify-content-center bg-light  text-center" style="border-radius: 10px; color: #7007fa">
-            <i  class="bi bi-grid d-inline-block mt-2 mb-1 me-2" style="font-size: 20px;"></i> <b class="mt-2 mb-1 d-inline-block" > دسته بندی محصولات</b>
-          </div>
-
-          <div v-for="item in categories">
-            <div  v-if="!showSubCategories" class="d-flex" @click="showCategoryDetails(item.id)">
-              <img style="width: 40px; height: 40px" :src="item.logo" alt="">
-              <p class="mb-0 mt-2 cursor">{{ item.title }}</p>
-            </div>
-            <div class="sub_category d-none" :id="'sub_cat_' + item.id">
-
-              <div class="d-flex text-black-50 pt-3 cursor" @click="showAllCategories">
-                <i class="bi bi-arrow-right-short d-inline-block ms-3 " style=" width: 21px; overflow-x: hidden;font-size: 40px"></i> <b class="" style="margin-top: 11px"> همه دسته بندی ها</b>
-              </div>
-
-              <div class="d-flex">
-                <img style="width: 40px; height: 40px" class="me-3" :src="item.logo">
-                <b class="">{{ item.title }}</b>
-              </div>
-              <div class="mt-3 ">
-                <div class="ms-5 border-bottom" style="min-height: 40px; max-height: 212px; overflow-y: auto ;direction: ltr!important ; text-align: end !important">
-                  <div class="ps-3 ">
-                    <p v-for="sub in item.sub_categories" class="">{{ sub.title }}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-
-          </div>
-        </div>
-
-      </div>
-
+      <hr class="text-muted">
 
 
       <router-link to="/dashboard" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Dashboard'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
+            <i class="bi bi-bar-chart-fill px-1 "></i>
+          </div>
+          <div>
+            <p class="mb-0 px-2 text-muted">داشبورد</p>
+          </div>
 
-
+        </div>
       </router-link>
+      <router-link to="/ads" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Advertisements'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
+            <i class="bi bi-bar-chart-fill px-1 "></i>
+          </div>
+          <div>
+            <p class="mb-0 px-2 text-muted">آگهی ها</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/dealings" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Dealings'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
+            <i class="bi bi-bar-chart-fill px-1 "></i>
+          </div>
+          <div>
+            <p class="mb-0 px-2 text-muted">معاملات</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/accounting" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Accounting'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
+            <i class="bi bi-bar-chart-fill px-1 "></i>
+          </div>
+          <div>
+            <p class="mb-0 px-2 text-muted">حسابداری</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/profile" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Profile'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
+            <i class="bi bi-bar-chart-fill px-1 "></i>
+          </div>
+          <div>
+            <p class="mb-0 px-2 text-muted">پروفایل</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/support" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Support'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
+            <i class="bi bi-bar-chart-fill px-1 "></i>
+          </div>
+          <div>
+            <p class="mb-0 px-2 text-muted">پشتیبانی</p>
+          </div>
+
+        </div>
+      </router-link>
+
       <hr class="text-muted">
+      <div class=" mx-1 rounded " style="">
+        <div class="d-flex w-100 h-100 py-3 px-3">
+          <div class="small text-muted">
+            <i class="bi bi-box-arrow-right px-1" style="font-weight: 600; font-size: 22px"></i>
+          </div>
+          <div>
+            <p @click="this.$parent.logOut" class="mb-0 px-2 text-muted">خروج از حساب</p>
+          </div>
+
+        </div>
+      </div>
 
     </div>
   </div>
@@ -169,20 +206,16 @@
 
 <script>
 import BtnPrimaryShadow from "@/components/BtnPrimaryShadow";
-import SideBarSubCategory from "@/components/SideBarSubCategory";
 
 export default {
   components:
       {
-        SideBarSubCategory,
         BtnPrimaryShadow
       },
-  name: "SideBar",
+  name: "ClientSideBar",
   data(){
     return{
 
-      categories: [],
-      showSubCategories : false,
     }
   },
   mounted() {
@@ -195,34 +228,8 @@ export default {
       }
     });
 
-    this.getCategories();
-
     },
   methods:{
-    getCategories(){
-      // axios.get('https://server.elfiro.com/api/v1/home/categories')
-      axios.get('https://server.elfiro.com/api/v1/basic/sidebar')
-          .then((response)=>{
-            this.categories = response.data.data.sidebar.categories
-            console.log(this.categories)
-          }).catch((error)=>{console.log(error)});
-    },
-
-    showCategoryDetails(id){
-
-       this.showSubCategories = true;
-       document.querySelectorAll('.sub_category').forEach((sub)=>{
-         sub.classList.add('d-none');
-       })
-       document.querySelector('#sub_cat_' + id).classList.remove('d-none');
-
-    },
-    showAllCategories(){
-      this.showSubCategories = false;
-      document.querySelectorAll('.sub_category').forEach((sub)=>{
-        sub.classList.add('d-none');
-      })
-    },
     closeOffCanvas(){
       document.querySelector('#closeBtn').click();
     }
@@ -231,39 +238,6 @@ export default {
 </script>
 
 <style scoped>
-p{
-  text-align: right ;
-  padding-right:10px;
-}
-::-webkit-scrollbar {
-  width: 5px;
-  cursor: pointer !important;
-  /*background-color: transparent;*/
-  background-color: #eeeeee;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  /*box-shadow: inset 0 0 5px grery;*/
-  /*border-radius: 10px;*/
-  cursor: pointer !important;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #7007fa;
-  border-radius: 10px;
-  cursor: pointer !important;
-
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: darkgray;
-  cursor: pointer !important;
-
-}
-
 .sidebar-active{
   overflow: hidden;
   background-color: #eeeeee;
