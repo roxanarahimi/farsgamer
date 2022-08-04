@@ -1,5 +1,5 @@
 <template>
-  <div id="side_bar"  class="h-100 side_bar d-none d-lg-block">
+  <div id="client_side_bar"  class="h-100 side_bar d-none d-lg-block mt-5">
     <div class="card me-5 px-3 px-xl-5 px-3 pt-4 pb-5 me-2">
 
       <div class="text-center">
@@ -221,10 +221,10 @@ export default {
   mounted() {
     document.addEventListener('scroll', () => {
       let top = document.documentElement.scrollTop;
-      if (document.querySelector('#side_bar > .card') && top > 100) {
-        document.querySelector('#side_bar > .card')?.setAttribute('style', 'top:10px');
+      if (document.querySelector('#client_side_bar > .card') && top > 100) {
+        document.querySelector('#client_side_bar > .card')?.setAttribute('style', 'top:10px');
       } else {
-        document.querySelector('#side_bar > .card')?.removeAttribute('style');
+        document.querySelector('#client_side_bar > .card')?.removeAttribute('style');
       }
     });
 

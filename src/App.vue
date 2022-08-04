@@ -6,13 +6,13 @@
     <top-bar/>
     <div class="w-100 d-flex">
 
-      <div >
-        <side-bar v-show="this.$route.name === 'Home' "  />
+      <div v-if="this.$route.name === 'Home' ">
+        <side-bar   />
       </div>
-      <div v-show="this.$route.name !== 'Home' " >
+      <div v-else>
         <client-side-bar />
       </div>
-      <div id="page_content" class="px-3 px-lg-2 px-lg-0">
+      <div id="page_content" class="px-3 px-lg-2 px-lg-0 mt-5">
         <!--          //content-->
         <div class="container-fluid p-0 m-0">
           <router-view/>
@@ -177,11 +177,11 @@ th, td {
   min-height: 500px !important;
 }
 
-.side_bar {
+#client_side_bar {
   width: calc(300px + 5rem);
 }
 
-.side_bar .card {
+#client_side_bar .card {
   position: fixed;
   width: 300px !important;
 }
@@ -197,7 +197,7 @@ th, td {
 
   }
 
-  .side_bar {
+  #client_side_bar {
     width: 100% !important;
   }
 }
