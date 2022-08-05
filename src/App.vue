@@ -39,11 +39,15 @@ export default {
   },
   updated() {
     console.log(this.$router.currentRoute.value.name);
-    if (this.$router.currentRoute.value.name !== 'Login' && this.$router.currentRoute.value.name !== 'Register') {
+    if (this.$router.currentRoute.value.name !== 'Login' &&
+        this.$router.currentRoute.value.name !== 'Register' &&
+        this.$router.currentRoute.value.name !== 'Home') {
       if (!localStorage.getItem('token')) {
         this.$router.push({name: 'Login'});
       }
 
+      this.load = true
+    }else {
       this.load = true
     }
   },
