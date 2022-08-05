@@ -138,12 +138,12 @@
           </div>
 
           <hr class="text-muted">
-          <div class="text-black-50">
-            <a href="">پشتیبانی</a>
-            <a href="">قوانین</a>
-            <a href="">ارتباط با ما</a>
-            <a href="">سوالات متداول</a>
-            <a href="">درباره ما</a>
+          <div class="flex-wrap">
+            <a class="text-black-50 ms-3" href="">پشتیبانی </a>
+            <a class="text-black-50 ms-3" href="">قوانین </a>
+            <a class="text-black-50 ms-3" href="">ارتباط باما </a>
+            <a class="text-black-50 ms-3" href="">سوالات متداول </a>
+            <a class="text-black-50 ms-3" href="">درباره ما </a>
           </div>
           <hr class="text-muted">
 
