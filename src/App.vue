@@ -1,8 +1,7 @@
 <template>
 
-  <router-view
-      v-if="(this.$route.name === 'Login' || this.$route.name === 'Register' || this.$route.name === 'Error404')"/>
-  <div v-else v-show="load" class="container-fluid p-0 pt-3">
+  <router-view  v-if="(this.$route.name === 'Login' || this.$route.name === 'Register' || this.$route.name === 'Error404')"/>
+  <div v-else v-show="load" class="container-fluid  ps-3 p-0 pt-3">
     <top-bar/>
     <div class="w-100 d-flex">
 

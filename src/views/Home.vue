@@ -1,7 +1,8 @@
 <template>
   <div class="home">
-    <div class="row">
-      <p class="text-primary">بیشترین معامله</p>
+    <p class="text-primary">بیشترین معامله</p>
+
+    <div class="row justify-content-between">
       <div v-for="item in data" class=" col-4 col-md-3 log-g-2 col-xl-1 mb-3 text-center">
         <img class="rounded" :src="item.logo" style="width: 100%; height: auto" :title="item.title">
         <p class="text-primary text-center mb-0">{{ item.title }}</p>
