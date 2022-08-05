@@ -3,8 +3,8 @@
     <div class="card border-0 border-start rounded-0 me-5 px-3 px-xl-5 px-3 pt-4 pb-5 me-2">
       <div class="text-center">
         <img src="/img/avatar.png" style="width: 92px; height:92px;" alt="">
-        <!--        <h4 class="fw-bolder text-primary text-center mt-2">roxana</h4>-->
-        <p class="text-black-50 text-center mb-1 mt-3"><i class="bi bi-person"></i> ورود/ ثبت نام</p>
+        <router-link to="/dashboard" v-if="user" class=" h4 fw-bolder text-primary text-center mt-2 d-block">{{ user.name }}</router-link>
+        <router-link v-else to="/login" class="text-black-50 text-center mb-1 mt-3 d-block"><i class="bi bi-person"></i> ورود/ ثبت نام</router-link>
         <btn-primary-shadow>
           <i class="bi bi-plus d-inline-block" style="font-size: 20px"></i>ثبت آگهی
         </btn-primary-shadow>
@@ -87,8 +87,8 @@
         <div class="card border-0  me-5 px-3 px-xl-5 px-3 pt-4 pb-5 me-2">
           <div class="text-center">
             <img src="/img/avatar.png" style="width: 92px; height:92px;" alt="">
-            <!--        <h4 class="fw-bolder text-primary text-center mt-2">roxana</h4>-->
-            <p class="text-black-50 text-center mb-1 mt-3"><i class="bi bi-person"></i> ورود/ ثبت نام</p>
+            <router-link to="/dashboard" v-if="user" class=" h4 fw-bolder text-primary text-center mt-2 d-block">{{ user.name }}</router-link>
+            <router-link v-else to="/login" class="text-black-50 text-center mb-1 mt-3 d-block"><i class="bi bi-person"></i> ورود/ ثبت نام</router-link>
             <btn-primary-shadow>
               <i class="bi bi-plus d-inline-block" style="font-size: 20px"></i>ثبت آگهی
             </btn-primary-shadow>
@@ -182,7 +182,8 @@ export default {
       categories: [],
       showSubCategories: false,
       platforms: [],
-      contact_links: []
+      contact_links: [],
+      user: JSON.parse(localStorage.getItem('user')),
     }
   },
   mounted() {

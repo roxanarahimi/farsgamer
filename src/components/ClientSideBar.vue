@@ -5,7 +5,7 @@
       <div class="text-center">
         <img src="/img/avatar.png" style="width: 92px; height:92px;" alt="">
 
-        <h4 class="fw-bolder text-primary text-center mt-2">roxana</h4>
+        <h4 class="fw-bolder text-primary text-center mt-2">{{  user.name }}</h4>
         <btn-primary-shadow>
           <i class="bi bi-plus d-inline-block" style="font-size: 20px"></i>ثبت آگهی
         </btn-primary-shadow>
@@ -89,7 +89,7 @@
             <i class="bi bi-box-arrow-right px-1" style="font-weight: 600; font-size: 22px"></i>
           </div>
           <div>
-            <p @click="this.$parent.logOut" class="mb-0 px-2 text-muted">خروج از حساب</p>
+            <p @click="this.$parent.logOut" class="mb-0 px-2 text-muted cursor">خروج از حساب</p>
           </div>
 
         </div>
@@ -192,7 +192,7 @@
                 <i class="bi bi-box-arrow-right px-1" style="font-weight: 600; font-size: 22px"></i>
               </div>
               <div>
-                <p @click="this.$parent.logOut" class="mb-0 px-2 text-muted">خروج از حساب</p>
+                <p @click="this.$parent.logOut" class="mb-0 px-2 text-muted cursor">خروج از حساب</p>
               </div>
 
             </div>
@@ -215,6 +215,7 @@ export default {
   name: "ClientSideBar",
   data(){
     return{
+      user: JSON.parse(localStorage.getItem('user')),
 
     }
   },

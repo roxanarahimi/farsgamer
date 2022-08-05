@@ -1,7 +1,7 @@
 <template>
 
   <router-view  v-if="(this.$route.name === 'Login' || this.$route.name === 'Register' || this.$route.name === 'Error404')"/>
-  <div v-else v-show="load" class="container-fluid  ps-3 p-0 pt-3">
+  <div v-else v-show="load" class="container-fluid  ps-lg-3 p-0 pt-3">
     <top-bar/>
     <div class="w-100 d-flex">
 
@@ -37,14 +37,19 @@ export default {
     }
   },
   updated() {
-    // this.load = false;
-    // if (!localStorage.getItem('token')) {
-    //   this.$router.push({name: 'Login'});
-    // }else{
-    //   this.load = true
-    // }
+    console.log(this.$router.currentRoute.value.name);
+    if (this.$router.currentRoute.value.name !== 'Login' && this.$router.currentRoute.value.name !== 'Register'){
+      this.load = false;
+      if (!localStorage.getItem('token')) {
+        this.$router.push({name: 'Login'});
+      }else{
+        this.load = true
+      }
+    }
+
   },
-  mounted() {this.load = true
+  mounted() {
+    // this.load = true
     // if (!localStorage.getItem('token')) {
     //   this.$router.push({name: 'Login'});
     //   localStorage.clear();

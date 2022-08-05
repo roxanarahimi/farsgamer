@@ -68,6 +68,12 @@
 <script>
 export default {
   name: "Dashboard",
+  data(){
+    return{
+      user: JSON.parse(localStorage.getItem('user')),
+      token: localStorage.getItem('token'),
+    }
+  },
   mounted() {
     // console.log(localStorage)
     // localStorage.setItem('token' , '2|bTD2TOfLmLjFZfG2ESsm5TlofIJgmYsMiuNETEQO');

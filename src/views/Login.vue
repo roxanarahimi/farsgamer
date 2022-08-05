@@ -46,13 +46,16 @@ export default {
   methods: {
     sendCode() {
       this.errors = [];
-      if (document.querySelector('#mobile').value.length !== 11) {
-        this.errors.push('شماره موبایل باید 11 رقم باشد.')
-      }
-      if (!document.querySelector('#mobile').value.toString().startsWith('09')) {
+      if (document.querySelector('#mobile').value.length === 0) {
+        this.errors.push('شماره موبایل را وارد کنید.')
+      }else if (!document.querySelector('#mobile').value.toString().startsWith('09')) {
         this.errors.push('شماره موبایل باید با 09 شروع شود.')
 
       }
+      if (document.querySelector('#mobile').value.length !== 11) {
+        this.errors.push('شماره موبایل باید 11 رقم باشد.')
+      }
+
       if (this.errors.length === 0) {
         axios.post('https://server.elfiro.com/api/v1/auth/send-verification-code', {
           phone: document.querySelector('#mobile').value,
