@@ -5,7 +5,7 @@
       <div class="text-center">
         <img src="/img/avatar.png" style="width: 92px; height:92px;" alt="">
 
-        <h4 class="fw-bolder text-primary text-center mt-2">{{  user.name }}</h4>
+        <h4 class="fw-bolder text-primary text-center mt-2">{{  user?.name }}</h4>
         <btn-primary-shadow>
           <i class="bi bi-plus d-inline-block" style="font-size: 20px"></i>ثبت آگهی
         </btn-primary-shadow>
@@ -109,7 +109,7 @@
           <div class="text-center">
             <img src="/img/avatar.png" style="width: 92px; height:92px;" alt="">
 
-            <h4 class="fw-bolder text-primary text-center mt-2">roxana</h4>
+            <h4 class="fw-bolder text-primary text-center mt-2">{{  user?.name }}</h4>
             <btn-primary-shadow><i class="bi bi-plus d-inline-block" style="font-size: 20px"></i>ثبت آگهی
             </btn-primary-shadow>
 

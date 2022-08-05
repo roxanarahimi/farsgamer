@@ -1,15 +1,16 @@
 <template>
 
-  <router-view  v-if="(this.$route.name === 'Login' || this.$route.name === 'Register' || this.$route.name === 'Error404')"/>
+  <router-view
+      v-if="(this.$route.name === 'Login' || this.$route.name === 'Register' || this.$route.name === 'Error404')"/>
   <div v-else v-show="load" class="container-fluid  ps-lg-3 p-0 pt-3">
     <top-bar/>
     <div class="w-100 d-flex">
 
       <div v-if="this.$route.name === 'Home' ">
-        <side-bar   />
+        <side-bar/>
       </div>
       <div v-else>
-        <client-side-bar />
+        <client-side-bar/>
       </div>
       <div id="page_content" class="px-3 px-lg-2 px-lg-0 mt-5">
         <!--          //content-->
@@ -38,15 +39,13 @@ export default {
   },
   updated() {
     console.log(this.$router.currentRoute.value.name);
-    if (this.$router.currentRoute.value.name !== 'Login' && this.$router.currentRoute.value.name !== 'Register'){
-      this.load = false;
+    if (this.$router.currentRoute.value.name !== 'Login' && this.$router.currentRoute.value.name !== 'Register') {
       if (!localStorage.getItem('token')) {
         this.$router.push({name: 'Login'});
-      }else{
-        this.load = true
       }
-    }
 
+      this.load = true
+    }
   },
   mounted() {
     // this.load = true
@@ -60,7 +59,8 @@ export default {
 
 
     // this.getClient();
-  },
+  }
+  ,
   methods: {
     getBaseData() {
       axios.get('https://server.elfiro.com/api/v1/basic/base')
@@ -79,10 +79,11 @@ export default {
           .catch((error) => {
             console.log(error)
           });
-    },
+    }
+    ,
     getClient() {
 
-      console.log('T',localStorage.getItem('token'));
+      console.log('T', localStorage.getItem('token'));
       axios.create({
         headers: {
           'Content-Type': 'application/json',
@@ -108,7 +109,8 @@ export default {
           })
       ;
       console.log(localStorage.getItem('token'))
-    },
+    }
+    ,
 
     logOut() {
       console.log(localStorage);
@@ -121,10 +123,13 @@ export default {
       }).get('https://server.elfiro.com/api/v1/client/logout')
           .then(() => {
             localStorage.removeItem('token');
-          }) .then(() => {
-            this.$router.push({name: 'Login'});
-          }).catch((error)=>{  console.log(error)  });
-    },
+          }).then(() => {
+        this.$router.push({name: 'Login'});
+      }).catch((error) => {
+        console.log(error)
+      });
+    }
+    ,
   }
 }
 
