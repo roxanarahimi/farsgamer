@@ -1,14 +1,14 @@
 <template>
   <div  id="topBar" class="row bg-white">
 
-    <router-link to="/" class="cursor col-4 col-xl-2 px-xl-3 mb-3 mb-lg-0 float-end">
+    <router-link to="/" class="cursor col-3 col-xl-2 px-xl-3 mb-3 mb-lg-0 float-end">
       <img src="img/logo.png" class="img-fluid ps-lg-5 me-2 me-lg-5" alt="">
     </router-link>
     <div class="col-9 col-lg-3 px-4 px-lg-3 mb-3 mb-lg-0  d-none d-lg-block">
 
       <input type="text" class="form-control" id="search" placeholder="جستوجو در همه اکانت ها">
     </div>
-    <div class="col-8 col-lg-6 px-4 px-lg-3 d-flex justify-content-start flex-row-reverse" style="font-size: 22px">
+    <div class="col-9 col-lg-6 px-4 px-lg-3 d-flex justify-content-start flex-row-reverse" style="font-size: 22px">
       <span class="my-2 px-2 pe-1 pe-lg-4 ps-lg-4 border-end me-1 me-lg-4 float-start">09032313681</span>
       <div>
       <span class="my-2 mx-1 px-2 text-primary  cursor position-relative"
