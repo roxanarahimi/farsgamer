@@ -4,6 +4,8 @@
       v-if="(this.$route.name === 'Login' || this.$route.name === 'Register' || this.$route.name === 'Error404')"/>
   <div v-else v-show="load" class="container-fluid  ps-lg-3 p-0 pt-3">
     <top-bar/>
+
+    <bottom-bar />
     <div class="w-100 d-flex">
 
       <div v-if="this.$route.name === 'Home' ">
@@ -26,11 +28,12 @@
 // @ is an alias to /src
 import SideBar from "@/components/SideBar";
 import TopBar from "@/components/TopBar";
+import BottomBar from "@/components/BottomBar";
 import ClientSideBar from "@/components/ClientSideBar";
 
 export default {
   name: 'Home',
-  components: {ClientSideBar, SideBar, TopBar},
+  components: {ClientSideBar, SideBar, TopBar, BottomBar},
   data() {
     return {
       load: false,

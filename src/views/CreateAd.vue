@@ -1,21 +1,21 @@
 <template>
   <div class="row  justify-content-center ">
-    <div class="card col-6">
+    <div class="card col-lg-6">
       <div class="card-body">
         <!--        // Level 1-->
         <form action="" style="margin-top: 100px; margin-bottom: 200px">
           <div class="row justify-content-center ">
-            <div class="col-8 mb-4">
+            <div class="col-lg-8 mb-4">
               <div class="bg-light text-primary rounded p-2"> آگهی شما <i class="mx-2 bi bi-chevron-left"></i> <b
                   id="breadcrumb"></b></div>
             </div>
-            <div v-if="level < 3" class="col-8 mb-4">
+            <div v-if="level < 3" class="col-lg-8 mb-4">
               <label for="item">انتخاب دسته بندی</label>
               <select @change="selectCategory" id="categories" class="form-select">
                 <option v-for="item in categories" :key="item.id" :value="item.id">{{ item.title }}</option>
               </select>
             </div>
-            <div v-if="level == 2" class="col-8 mb-4">
+            <div v-if="level == 2" class="col-lg-8 mb-4">
               <label for="subcategory">انتخاب محصول</label>
               <select @change="selectSubCategory" id="subcategory" class="form-select">
                 <option v-for="item in subCategories" :key="item.id" :value="item.id">{{ item.title }}</option>
@@ -24,27 +24,27 @@
           </div>
 
           <div v-if="level == 3" class="row justify-content-center ">
-            <div class="col-8 mb-4 text-center">
+            <div class="col-lg-8 mb-4 text-center">
               <label for="item">شرکت سازنده</label>
               <select @change="selectCategory" id="categori545s" class="form-select">
                 <option v-for="item in categories" :key="item.id" :value="item.id">{{ item.title }}</option>
               </select>
             </div>
-            <div class="col-8 mb-4 text-center">
+            <div class="col-lg-8 mb-4 text-center">
               <label for="item">آدرس ایمیل</label>
               <input type="text" class="form-control">
             </div>
 <!--         .........................   ax-->
 
-            <div class="col-8 mb-4 text-center">
+            <div class="col-lg-8 mb-4 text-center">
               <label for="item">توضیحات</label>
               <textarea  class="form-control" name="" id="" cols="30" rows="6"></textarea>
             </div>
-            <div class="col-8 mb-4 text-center">
+            <div class="col-lg-8 mb-4 text-center">
               <label for="item">قیمت</label>
               <input type="text" class="form-control">
             </div>
-            <div class="col-8 mb-4 text-center d-flex">
+            <div class="col-lg-8 mb-4 text-center d-flex">
               <input type="checkbox" class="form-check ms-2" required>
               <label for="item">قوانین را مطاعه کردم و با آنها موافقم</label>
             </div>
@@ -149,5 +149,8 @@ export default {
 label{
   width: 100%;
   text-align: start;
+}
+select{
+  padding-right: 30px !important;
 }
 </style>
