@@ -1,25 +1,25 @@
 <template>
 <div id="bottomBar" class="d-lg-none">
-  <span class="bottom-bar-btn">
+  <router-link to="" class="bottom-bar-btn">
     <i class="bi bi-card-text"></i>
     <p class="btm-btn-title d-block text-black-50 text-center">آگهی</p>
-  </span>
- <span class="bottom-bar-btn">
+  </router-link>
+ <router-link to="" class="bottom-bar-btn">
     <i class="bi bi-grid"></i>
     <p class="btm-btn-title d-block text-black-50 text-center">دسته بندی</p>
-  </span>
- <span class="bottom-bar-btn">
+  </router-link>
+ <router-link to="/ad+" class="bottom-bar-btn">
     <i class="bi bi-plus-square"></i>
     <p class="btm-btn-title d-block text-black-50 text-center">ثبت آگهی</p>
-  </span>
- <span class="bottom-bar-btn">
+  </router-link>
+ <router-link to="" class="bottom-bar-btn">
     <i class="bi bi-chat-dots"></i>
-    <p class="btm-btn-title d-block text-black-50 text-center">پروفایل</p>
-  </span>
- <span class="bottom-bar-btn">
+    <p class="btm-btn-title d-block text-black-50 text-center">چت</p>
+  </router-link>
+ <router-link to="/dashboard" class="bottom-bar-btn">
     <i class="bi bi-person"></i>
     <p class="btm-btn-title d-block text-black-50 text-center">پروفایل</p>
-  </span>
+  </router-link>
 
 </div>
 </template>

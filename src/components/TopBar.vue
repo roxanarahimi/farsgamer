@@ -9,7 +9,7 @@
       <input type="text" class="form-control" id="search" placeholder="جستوجو در همه اکانت ها">
     </div>
     <div class="col-8 col-lg-6 px-4 px-lg-3 d-flex justify-content-start flex-row-reverse" style="font-size: 22px">
-      <span class="my-2 px-2 pe-2 pe-lg-5 ps-lg-5 border-end me-2 me-lg-5 float-start">09032313681</span>
+      <span class="my-2 px-2 pe-1 pe-lg-4 ps-lg-4 border-end me-1 me-lg-4 float-start">09032313681</span>
       <div>
       <span class="my-2 mx-1 px-2 text-primary  cursor position-relative"
             style=" line-height:37px;width: 37px; height: 37px; background-color: #eeeeee; border-radius: 5px; text-align: center; "><i
