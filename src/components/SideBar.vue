@@ -207,7 +207,6 @@ export default {
             this.categories = response.data.data.sidebar.categories
             this.platforms = response.data.data.sidebar.platforms
             this.contact_links = response.data.data.sidebar.contact_links
-
           }).catch((error) => {
         console.log(error)
       });

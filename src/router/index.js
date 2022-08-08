@@ -47,6 +47,11 @@ const routes = [
         name: 'Profile',
         component: () => import(/* webpackChunkName: "profile" */ '../views/Profile.vue')
     },
+    {
+        path: '/ad+',
+        name: 'CreateAd',
+        component: () => import(/* webpackChunkName: "createAd" */ '../views/CreateAd.vue')
+    },
 
 
 ]
