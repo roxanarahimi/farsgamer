@@ -82,7 +82,28 @@ export default {
     //   localStorage.removeItem('user');
     //   this.$router.push({name: 'Login'})
     // }
+    this.getdata()
   }
+  ,
+  methods:{
+    getdata(){
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      })
+          .get('https://server.elfiro.com/api/v1/client/dashboard')
+          .then((response) => {
+            console.log(response);
+
+          })
+      .catch((error)=>{
+        console.log(error);
+      })
+    }
+}
 }
 </script>
 

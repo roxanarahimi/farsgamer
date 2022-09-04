@@ -1,59 +1,59 @@
 <template>
   <div class="row  justify-content-center ">
-    <div class="card col-lg-6">
+    <div class="card col-xl-8 col-xxl-6">
       <div class="card-body">
         <!--        // Level 1-->
         <form action="" style="margin-top: 100px; margin-bottom: 200px">
           <div class="row justify-content-center ">
-            <div class="col-lg-8 mb-4">
+            <div class="col-lg-10 col-xxl-8 mb-4">
               <div class="bg-light text-primary rounded p-2"> آگهی شما <i class="mx-2 bi bi-chevron-left"></i> <b
                   id="breadcrumb"></b></div>
             </div>
-            <div v-if="level < 3" class="col-lg-8 mb-4">
+            <div v-if="level < 3" class="col-lg-10 col-xxl-8 mb-4">
               <label for="item">انتخاب دسته بندی</label>
               <select @change="selectCategory" id="categories" class="form-select">
                 <option v-for="item in categories" :key="item.id" :value="item.id">{{ item.title }}</option>
               </select>
             </div>
-            <div v-if="level == 2" class="col-lg-8 mb-4">
-              <label for="subcategory">انتخاب محصول</label>
-              <select @change="selectSubCategory" id="subcategory" class="form-select">
-                <option v-for="item in subCategories" :key="item.id" :value="item.id">{{ item.title }}</option>
-              </select>
-            </div>
+            <!--            <div v-if="level == 2" class="col-lg-8 mb-4">-->
+            <!--              <label for="subcategory">انتخاب محصول</label>-->
+            <!--              <select @change="selectSubCategory" id="subcategory" class="form-select">-->
+            <!--                <option v-for="item in subCategories" :key="item.id" :value="item.id">{{ item.title }}</option>-->
+            <!--              </select>-->
+            <!--            </div>-->
           </div>
-
-          <div v-if="level == 3" class="row justify-content-center ">
-            <div class="col-lg-8 mb-4 text-center">
-              <label for="item">شرکت سازنده</label>
-              <select @change="selectCategory" id="categori545s" class="form-select">
-                <option v-for="item in categories" :key="item.id" :value="item.id">{{ item.title }}</option>
-              </select>
+          <div v-if="level == 2" class="row justify-content-center ">
+            <!--            <div class="col-lg-8 mb-4 text-center">-->
+            <!--              <label for="item">شرکت سازنده</label>-->
+            <!--              <select @change="selectCategory" id="categori545s" class="form-select">-->
+            <!--                <option v-for="item in categories" :key="item.id" :value="item.id">{{ item.title }}</option>-->
+            <!--              </select>-->
+            <!--            </div>-->
+            <div class="col-lg-10 col-xxl-8 mb-4 text-center">
+              <label for="name">نام اکانت</label>
+              <input type="text" id="name" class="form-control">
             </div>
-            <div class="col-lg-8 mb-4 text-center">
-              <label for="item">آدرس ایمیل</label>
-              <input type="text" class="form-control">
+            <div class="col-lg-10 col-xxl-8 mb-4 text-center">
+              <dropzone :img="img"/>
             </div>
-<!--         .........................   ax-->
-
-            <div class="col-lg-8 mb-4 text-center">
-              <label for="item">توضیحات</label>
-              <textarea  class="form-control" name="" id="" cols="30" rows="6"></textarea>
+            <div class="col-lg-10 col-xxl-8 mb-4 text-center">
+              <label for="content">توضیحات</label>
+              <textarea class="form-control" id="content" cols="30" rows="6"></textarea>
             </div>
-            <div class="col-lg-8 mb-4 text-center">
-              <label for="item">قیمت</label>
-              <input type="text" class="form-control">
+            <div class="col-lg-10 col-xxl-8 mb-4 text-center">
+              <label for="price">قیمت</label>
+              <input type="text" id="price" class="form-control">
             </div>
-            <div class="col-lg-8 mb-4 text-center d-flex">
-              <input type="checkbox" class="form-check ms-2" required>
-              <label for="item">قوانین را مطاعه کردم و با آنها موافقم</label>
+            <div class="col-lg-10 col-xxl-8 mb-4 text-center d-flex">
+              <input type="checkbox" id="terms" class="form-check ms-2" required>
+              <label for="terms">قوانین را مطاعه کردم و با آنها موافقم</label>
             </div>
           </div>
           <div class=" text-center mt-5">
 
-          <btn-primary-shadow v-if="level < 3" @click.prevent="goToLevel(this.level)">ادامه</btn-primary-shadow>
-          <btn-primary-shadow v-if="level == 3" @click.prevent="submit">ثبت</btn-primary-shadow>
-        </div>
+            <btn-primary-shadow v-if="level < 2" @click.prevent="goToLevel(this.level)">ادامه</btn-primary-shadow>
+            <btn-primary-shadow v-if="level == 2" @click.prevent="submit">ثبت</btn-primary-shadow>
+          </div>
         </form>
 
 
@@ -64,27 +64,39 @@
 
 <script>
 import BtnPrimaryShadow from "@/components/BtnPrimaryShadow";
+import Dropzone from "@/components/dropZone";
 
 export default {
   name: "CreateAd",
-  components: {BtnPrimaryShadow},
+  components: {Dropzone, BtnPrimaryShadow},
   data() {
     return {
       categories: [],
       subCategories: [],
       subCategory: {},
       level: 1,
-    }
+      img: null
+         }
   },
   mounted() {
     this.getCategories()
   },
   methods: {
     getCategories() {
-      axios.get('https://server.elfiro.com/api/v1/basic/sidebar')
+      console.log('token', localStorage.getItem('token'));
+
+      let token = localStorage.getItem('token').replace('Bearer ', '')
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': localStorage.getItem('token'),
+        }
+      })
+          .get('https://server.elfiro.com/api/v1/client/orders/details')
           .then((response) => {
-            this.categories = response.data.data.sidebar.categories
-            console.log(this.categories)
+            this.categories = response.data.data.details.categories.digital;
+            console.log('aa', this.categories)
             this.subCategories = this.categories[0].sub_categories
           }).catch((error) => {
         console.log(error)
@@ -118,8 +130,10 @@ export default {
             document.querySelector('#breadcrumb').innerText = txt + element.title
           }
         });
+
       }
       if (level == 2) {
+
         let id = document.querySelector('#categories').value;
         let id2 = document.querySelector('#subcategory').value;
         let txt = '';
@@ -137,20 +151,73 @@ export default {
       }
       this.level = parseInt(level) + 1;
 
+    },
+    submit() {
+      // this.img = document.querySelector('#dzFile').files[0]
+      //
+      //
+      // console.log(this.img);
+
+
+      let code= document.querySelector('#dzFile').value;
+      function dataURLtoFile(code, filename='image.jpg') {
+
+        var arr = code.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]),
+            n = bstr.length,
+            u8arr = new Uint8Array(n);
+
+        while(n--){
+          u8arr[n] = bstr.charCodeAt(n);
+        }
+
+        return new File([u8arr], filename, {type:mime});
+      }
+      var file = dataURLtoFile(code);
+      console.log(file);
+
+
+      // axios.create({
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Accept': 'application/json',
+      //     'Authorization': localStorage.getItem('token'),
+      //   }
+      // })
+      //     .post('https://server.elfiro.com/api/v1/client/orders',{
+      //       category_id: document.querySelector('#categories').value,
+      //       name: document.querySelector('#name').value,
+      //       content: document.querySelector('#content').value,
+      //       price: document.querySelector('#price').value,
+      //       image: Dropzone.setup().image.value,
+      //       gallery: [],
+      //       platforms: [],
+      //       parameters: [], // id,value
+      //       // province: '',
+      //       // city: '',
+      //     })
+      //
+      //     .then((response) => {
+      //       console.log(response)
+      //     })
+      //     .catch((error) => {  console.log(error) });
     }
-
-
   }
+
+
+
 }
 
 </script>
 
 <style scoped>
-label{
+label {
   width: 100%;
   text-align: start;
 }
-select{
+
+select {
   padding-right: 30px !important;
 }
 </style>

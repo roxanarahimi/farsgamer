@@ -8,15 +8,15 @@
     <bottom-bar />
     <div class="w-100 d-flex">
 
-      <div v-if="this.$route.name === 'Home' ">
+      <div class="mt-5 pt-2" v-if="this.$route.name === 'Home' || this.$route.name === 'Deal'  || this.$route.name === 'Advertisement' ">
         <side-bar/>
       </div>
-      <div v-else>
+      <div class="mt-5 pt-2" v-else>
         <client-side-bar/>
       </div>
       <div id="page_content" class="px-3 px-lg-2 px-lg-0 mt-5">
         <!--          //content-->
-        <div class="container-fluid p-0 m-0">
+        <div class="container-fluid p-0 m-0 mt-2 ">
           <router-view/>
         </div>
         <!--          //content-->

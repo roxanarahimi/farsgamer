@@ -1,7 +1,9 @@
 <template>
   <div id="side_bar" class=" side_bar d-none d-lg-block" style="min-height: 100vh; position: page !important">
     <div class="card border-0 border-start rounded-0 me-5 px-3 px-xl-5 px-3 pt-4 pb-5 me-2">
-      <div class="text-center">
+
+      <div v-if="this.$route.name === 'Home' || this.$route.name === 'Advertisement'" class="row">
+        <div class="text-center">
         <img src="/img/avatar.png" style="width: 92px; height:92px;" alt="">
         <router-link to="/dashboard" v-if="user" class=" h4 fw-bolder text-primary text-center mt-2 d-block">{{ user.name }}</router-link>
         <router-link v-else to="/login" class="text-black-50 text-center mb-1 mt-3 d-block"><i class="bi bi-person"></i> ورود/ ثبت نام</router-link>
@@ -11,14 +13,11 @@
 
 
       </div>
-      <div class="row">
-        <div class="">
           <div class=" py-2 mt-4 mb-3 d-flex  justify-content-center bg-light  text-center"
                style="border-radius: 10px; color: #7007fa">
             <i class="bi bi-grid d-inline-block mt-2 mb-1 me-2" style="font-size: 20px;"></i> <b
               class="mt-2 mb-1 d-inline-block"> دسته بندی محصولات</b>
           </div>
-
           <div v-for="item in categories">
             <div v-if="!showSubCategories" class="d-flex" @click="showCategoryDetails(item.id)">
               <img style="width: 40px; height: 40px" :src="item.logo" alt="">
@@ -46,8 +45,32 @@
               </div>
             </div>
           </div>
-          <div>
+      </div>
+      <div v-if="this.$route.name === 'Deal'" class="row">
+        <div class="card mt-5 mb-2">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-12 mb-3">
+                <!--          <p>قابل برداشت</p>-->
+                <div class=" mx-auto rounded " style="overflow: hidden; background-color: #eeeeee; ">
+                  <div class="d-flex w-100 h-100 py-3 px-3 " style="border-left:8px solid #7007FA;  ">
+                    <p class="mb-0 w-100 text-center fw-lighter"><span class="fw-bold h5">1,500,000</span> تومان</p>
+                  </div>
+                </div>
+              </div>
 
+
+            </div>
+          </div>
+        </div>
+        <div class="card ">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-12 mb-3">
+                <!--          <p>قابل برداشت</p>-->
+                <p class="mb-0 w-100 text-center fw-bold text-primary h6 mt-3 ">معامله با واسطه امن</p>
+              </div>
+            </div>
           </div>
         </div>
 
