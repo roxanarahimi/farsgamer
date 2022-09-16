@@ -64,6 +64,11 @@ const routes = [
         name: 'Deal',
         component: () => import(/* webpackChunkName: "deal" */ '../views/DealOwner.vue')
     },
+    {
+        path: '/chat',
+        name: 'Chat',
+        component: () => import(/* webpackChunkName: "chat" */ '../views/Chat.vue')
+    },
 
 
 ]

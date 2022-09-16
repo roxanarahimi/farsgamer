@@ -136,11 +136,11 @@
 
           <div class="form-check w-100">
 
-            <input class="ms-2" type="checkbox" id="terms">
-            <label for="terms">قوانین را خوانده ام و با آن موافقم</label>
+            <input class="ms-2" type="checkbox" id="terms" @click="termsToggle">
+          <label  for="terms" @click="termsToggle">قوانین را خوانده ام و با آن موافقم</label>
 
           </div>
-          <button disabled="disabled" type="button" class="btn btn-outline-primary d-inline-block py-3" >درخواست معامله</button>
+          <button disabled id="reqBtn" type="button" class="btn btn-outline-primary d-inline-block py-3" data-bs-dismiss="modal" >درخواست معامله</button>
         </div>
       </div>
     </div>
@@ -167,6 +167,16 @@ export default {
       console.log(this.order.user.user_name)
     }).catch((error)=>{console.log(error)});
   },
+  methods: {
+    termsToggle(){
+      document.querySelector('#terms').checked
+          ?
+          document.querySelector('#reqBtn').removeAttribute('disabled')
+          :
+          document.querySelector('#reqBtn').setAttribute('disabled', 'disabled');
+
+    }
+  }
 
 }
 </script>

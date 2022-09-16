@@ -5,11 +5,16 @@
   <div v-else v-show="load" class="container-fluid  ps-lg-3 p-0 pt-3">
     <top-bar/>
 
-    <bottom-bar />
+    <bottom-bar/>
     <div class="w-100 d-flex">
 
-      <div class="mt-5 pt-2" v-if="this.$route.name === 'Home' || this.$route.name === 'Deal'  || this.$route.name === 'Advertisement' ">
+      <div class="mt-5 pt-2"
+           v-if="this.$route.name === 'Home' || this.$route.name === 'Deal'  || this.$route.name === 'Advertisement' ">
         <side-bar/>
+      </div>
+      <div class="mt-5 pt-2" v-if="this.$route.name === 'Chat'">
+
+        <chat-side-bar />
       </div>
       <div class="mt-5 pt-2" v-else>
         <client-side-bar/>
@@ -30,10 +35,11 @@ import SideBar from "@/components/SideBar";
 import TopBar from "@/components/TopBar";
 import BottomBar from "@/components/BottomBar";
 import ClientSideBar from "@/components/ClientSideBar";
+import ChatSideBar from "@/components/ChatSideBar";
 
 export default {
   name: 'Home',
-  components: {ClientSideBar, SideBar, TopBar, BottomBar},
+  components: {ClientSideBar, SideBar, TopBar, BottomBar, ChatSideBar},
   data() {
     return {
       load: false,
@@ -50,7 +56,7 @@ export default {
       }
 
       this.load = true
-    }else {
+    } else {
       this.load = true
     }
   },
