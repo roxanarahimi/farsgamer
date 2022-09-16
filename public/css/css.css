@@ -1,5 +1,5 @@
 *, body, html {
-    font-family: 'IranSans' !important; /*direction: rtl !important;*/
+    font-family: 'IranSans' ; /*direction: rtl !important;*/
     /*font-family: 'vazir',' Comic Sans MS' !important; !*direction: rtl !important;*!*/
     text-align: right;
 }

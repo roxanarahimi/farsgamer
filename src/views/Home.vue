@@ -12,7 +12,7 @@
     </div>
     <div class="row">
       <div v-for="item in orders" :key="item" class="mb-3 col-12 col-lg-6 col-xl-4 col-xxl-3">
-        <div class="card ">
+        <router-link :to="'/ad/'+item.id" class="card ">
           <div class="card-body px-0 py-3">
 
             <div class="d-flex p-2">
@@ -38,7 +38,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </router-link>
       </div>
 
     </div>

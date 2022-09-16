@@ -14,7 +14,7 @@
       <div class="mt-5 pt-2" v-else>
         <client-side-bar/>
       </div>
-      <div id="page_content" class="px-3 px-lg-2 px-lg-0 mt-5">
+      <div id="page_content" class="px-3 px-lg-2 px-lg-0 mt-5 ms-md-2">
         <!--          //content-->
         <div class="container-fluid p-0 m-0 mt-2 ">
           <router-view/>

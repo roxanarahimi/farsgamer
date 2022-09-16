@@ -48,7 +48,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "profile" */ '../views/Profile.vue')
     },
     {
-        path: '/ad',
+        path: '/ad/:id',
         name: 'Advertisement',
         component: () => import(/* webpackChunkName: "advertisement" */ '../views/Ad.vue'),
         props: true,
