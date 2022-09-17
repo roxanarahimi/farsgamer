@@ -1,8 +1,6 @@
 <template>
-  <div id="chat_side_bar"  class="h-100 side_bar d-none d-lg-block  " style="width: 250px">
-    <div class="card  border-0 border-start rounded-0 h-100 pb-5 me-2">
-
-
+  <div id="chat_side_bar"  class=" side_bar d-none d-lg-block  " style="width: 250px;height:90vh; overflow-y: scroll">
+    <div class="card  border-0 border-start rounded-0 h-100 pb-5 me-2" style=" " >
       <div class="border-bottom">
         <h6 class="text-primary my-4 w-100 text-center ">چت فارس گیمر</h6>
       </div>
@@ -42,19 +40,150 @@
 
         </div>
       </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
 
-<!--      <hr class="text-muted">-->
-<!--      <div class=" mx-1 rounded " style="">-->
-<!--        <div class="d-flex w-100 h-100 py-3 px-3">-->
-<!--          <div class="small text-muted">-->
-<!--            <i class="bi bi-box-arrow-right px-1" style="font-weight: 600; font-size: 22px"></i>-->
-<!--          </div>-->
-<!--          <div>-->
-<!--            <p @click="this.$parent.logOut" class="mb-0 px-2 text-muted cursor">خروج از حساب</p>-->
-<!--          </div>-->
+        </div>
+      </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
 
-<!--        </div>-->
-<!--      </div>-->
+        </div>
+      </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
+
+        </div>
+      </router-link>
+      <router-link to="/dashboard" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <img >
+          <div>
+            <p class="mb-0 px-2 text-muted">roxana</p>
+          </div>
+
+        </div>
+      </router-link>
 
     </div>
   </div>
@@ -199,9 +328,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .sidebar-active{
-  overflow: hidden;
   background-color: #eeeeee;
   color: #7007FA  !important;
 

@@ -1,7 +1,11 @@
 <template>
-  <div class="row p-5" style="background-color: whitesmoke">
+  <div class="border-bottom pt-3">
+    <h6 class="text-primary my-3 w-100 text-center ">چت فارس گیمر</h6>
+  </div>
+  <div class="row p-5 pt-0" style="background-color: whitesmoke;  height: 82vh; overflow-y: scroll">
+
     <div class="d-flex justify-content-center">
-      <div class="col-4 p-3 bg-light border border-primary rounded mb-3" style="background-color: lightgrey !important">
+      <div class="col-4 mt-3 p-3 bg-light border border-primary rounded mb-3" style="background-color: lightgrey !important">
         <p>قوانین چت</p>
         <p>1.</p>
         <p>2.</p>
