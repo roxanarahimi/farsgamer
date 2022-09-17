@@ -1,6 +1,6 @@
 <template>
-  <div id="chat_side_bar"  class=" side_bar d-none d-lg-block  " style="width: 250px;height:90vh; overflow-y: scroll">
-    <div class="card  border-0 border-start rounded-0 h-100 pb-5 me-2" style=" " >
+  <div id="chat_side_bar"  class=" side_bar d-none d-lg-block  " dir="ltr" style="width: 250px;height:90vh; overflow-y: scroll">
+    <div class="card  border-0 border-start rounded-0 h-100 pb-5 me-2" dir="rtl" style=" " >
       <div class="border-bottom">
         <h6 class="text-primary my-4 w-100 text-center ">چت فارس گیمر</h6>
       </div>
