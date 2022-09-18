@@ -2,10 +2,11 @@
   <div class="border-bottom pt-3">
     <h6 class="text-primary my-3 w-100 text-center ">چت فارس گیمر</h6>
   </div>
-  <div class="row p-5 pt-0" style="background-color: whitesmoke;  height: 82vh; overflow-y: scroll">
+  <div class="chat row p-5 pt-0 " style="">
 
     <div class="d-flex justify-content-center">
-      <div class="col-4 mt-3 p-3 bg-light border border-primary rounded mb-3" style="background-color: lightgrey !important">
+      <div class="col-4 mt-3 p-3 bg-light border border-primary rounded mb-3"
+           style="background-color: lightgrey !important">
         <p>قوانین چت</p>
         <p>1.</p>
         <p>2.</p>
@@ -49,6 +50,13 @@
       </div>
     </div>
   </div>
+  <div class="border-top d-flex " style="background-color: whitesmoke; ">
+    <span style="width: 50px; font-size: 30px;margin-top: 25px; text-align: left"><i
+        class="bi bi-send text-primary"></i></span>
+    <input type="text" class="form-control bg-white  m-3" style="width: calc(100% - 100px)">
+    <span style="width: 50px; font-size: 30px;margin-top: 25px; text-align: right"><i
+        class="bi bi-paperclip text-primary"></i></span>
+  </div>
 </template>
 
 <script>
@@ -72,5 +80,19 @@ export default {
   float: left !important;
   margin-bottom: 10px;
 
+}
+
+.chat {
+  background-color: whitesmoke;
+  height: calc(100vh - 240px);
+  overflow-y: scroll;
+  margin-right: 1px;
+  margin-left: 1px
+}
+
+@media (max-width: 760px) {
+  .chat {
+    height: calc(100vh - 300px);
+  }
 }
 </style>
