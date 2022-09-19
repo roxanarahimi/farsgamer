@@ -4,11 +4,13 @@
       <div class="border-bottom">
         <h6 class="text-primary my-4 w-100 text-center ">چت فارس گیمر</h6>
       </div>
-      <span v-for="item in chats" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':this.$route.name == 'Chat1'}">
+      <span @click="()=>{selected_g_id = item.id }" v-for="item in chats" class=" rounded border-bottom rounded-0" :class="{'sidebar-active':selected_g_id == item.id}">
         <div class="d-flex w-100 h-100 py-3 px-3 inner">
-          <img >
+          <img :src="item.user2.profile_image" style="width: 50px; height: 50px; border-radius: 50%">
           <div>
-            <p class="mb-0 px-2 text-muted">roxana</p>
+            <p class="mb-0 px-2 text-muted">{{  item.user2.user_name }}</p>
+            <small class="mb-0 px-2 text-muted">{{  item.last.text }}</small>
+
           </div>
 
         </div>
@@ -135,6 +137,7 @@ export default {
   data(){
     return{
       user: JSON.parse(localStorage.getItem('user')),
+      selected_g_id: localStorage.getItem('chat_g_id'),
 chats: {}
     }
   },

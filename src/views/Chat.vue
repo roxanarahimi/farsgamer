@@ -1,13 +1,18 @@
 <template>
  <div v-if="selectedChat">
    <div class="border-bottom pt-3">
-     <h6 class="text-primary my-3 w-100 text-center ">چت فارس گیمر</h6>
+     <div class="d-flex w-100 h-100 py-3 px-3 inner">
+       <img :src="selectedChat.user2?.profile_image" style="width: 50px; height: 50px; border-radius: 50%">
+       <div>
+         <p class="mb-0 px-2 text-muted">{{  selectedChat.user2?.user_name }}</p>
+       </div>
+
+     </div>
    </div>
    <div class="chat row p-5 pt-0 m-0 " style="">
 
-     <div class="d-flex justify-content-center">
-       <div class="col-4 mt-3 p-3 bg-light border border-primary rounded mb-3"
-            style="background-color: lightgrey !important">
+     <div v-if="chats.length" class="d-flex justify-content-center">
+       <div class="col-4 mt-3 p-3 bg-light border border-primary rounded mb-3" style="background-color: lightgrey !important">
          <p>قوانین چت</p>
          <p>1.</p>
          <p>2.</p>
@@ -15,52 +20,26 @@
          <p>4.</p>
        </div>
      </div>
-     <hr class="border-primary my-5">
-     <div class="w-100">
-       <div class="myMsg py-1">
-         <p class="m-3 mx-4">salam aldfr f rf tr ft rtg fr</p>
+     <hr v-if="chats.length" class="border-primary my-5">
+     <div v-for="item in chats" class="w-100">
+       <div v-if="item.sender_id === user1" class="myMsg py-1">
+         <p class="m-3 mx-4">{{ item.content }}</p>
        </div>
-     </div>
-     <div class="w-100">
-       <div class="theirMsg">
-         <p class="m-3 mx-4">werft tgy uj y76 hgt 6yh u7j iu kj u7jhyb trt tgy uj y76 hgt 6yh u7j iu kj u7jhyb trt tgy uj
-           y76
-           hgt 6yh u7j iu kj u7jhyb trt tgy uj y76 hgt 6yh u7j iu kj u7jhyb trt tgy uj y76 hgt 6yh u7j iu kj u7jhyb trt
-           tgy uj y76 hgt 6yh u7j iu kj u7jhyb trt tgy uj y76 hgt 6yh u7j iu kj u7jhyb trt tgy uj y76 hgt 6yh u7j iu kj
-           u7jhyb trg th yy 6hu6 t</p>
-       </div>
-     </div>
-     <div class="w-100">
-       <div class="myMsg py-1">
-         <p class="m-3 mx-4">salam aldfr f rf tr ft rtg fr</p>
-       </div>
-     </div>
-     <div class="w-100">
-       <div class="myMsg py-1">
-         <p class="m-3 mx-4">salam aldfr f rf tr ft rtg fr</p>
-       </div>
-     </div>
-     <div class="w-100">
-       <div class="theirMsg py-1">
-         <p class="m-3 mx-4">salam aldfr f rf tr ft rtg fr</p>
-       </div>
-     </div>
-     <div class="w-100">
-       <div class="myMsg py-1">
-         <p class="m-3 mx-4">salam aldfr f rf tr ft rtg fr</p>
+       <div v-if="item.sender_id === user2" class="theirMsg">
+         <p class="m-3 mx-4">{{ item.content }}</p>
        </div>
      </div>
    </div>
    <div class="border-top d-flex " style="background-color: whitesmoke; ">
-    <span style="width: 50px; font-size: 30px;margin-top: 25px; text-align: left"><i
+    <span @click="sendMessage(groupId)" style="width: 50px; font-size: 30px;margin-top: 25px; text-align: left"><i
         class="bi bi-send text-primary"></i></span>
-     <input type="text" class="form-control bg-white  m-3" style="width: calc(100% - 100px)">
+     <input @keyup="messageInput($event)" type="text" id="message" class="form-control bg-white  m-3" style="width: calc(100% - 100px)">
      <span style="width: 50px; font-size: 30px;margin-top: 25px; text-align: right"><i
          class="bi bi-paperclip text-primary"></i></span>
    </div>
  </div>
   <div v-else>
-    no chat selected
+
   </div>
 </template>
 
@@ -72,9 +51,20 @@ export default {
   data(){
     return{
       selectedChat: {},
+      groupId: localStorage.getItem('chat_g_id'),
+      chats: [],
+      user1:0,
+      user2:0
     }
   },
   mounted() {
+
+    console.log(localStorage.getItem('chat_g_id'));
+
+    if (localStorage.getItem('chat_g_id')){
+      this.getMessages(localStorage.getItem('chat_g_id'));
+
+    }
     document.querySelector('#page_content').style.padding = '0'
     document.querySelector('#page_content').style.margin = '0'
     document.querySelector('#page_content').style.width = '100%'
@@ -84,6 +74,51 @@ export default {
     document.querySelector('#app').style.backgroundColor = 'white'
     document.querySelector('#page_content').style.width = 'calc(100% - 300px - 5rem)'
 
+  },
+  methods:{
+    getMessages(groupId){
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      })
+          .get('https://server.elfiro.com/api/v1/client/chat/list/'+groupId)
+          .then((response)=>{
+            console.log('chats',response.data.data.group.record.chats)
+            this.chats = response.data.data.group.record.chats;
+            this.user1 = response.data.data.group.record.user1.id;
+            this.user2 = response.data.data.group.record.user2.id;
+            this.selectedChat = response.data.data.group.record;
+          })
+          .catch((error)=>{  console.log(error)  });
+
+    },
+    messageInput(e){
+      if (e.key == 'Enter'){
+        this.sendMessage(this.groupId);
+      }
+    },
+    sendMessage(groupId){
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      })
+          .post('https://server.elfiro.com/api/v1/client/chat/list/'+groupId,{
+            message: document.querySelector('#message').value,
+          })
+          .then((response)=>{
+
+            document.querySelector('#message').value = '';
+            this.getMessages(groupId);
+          })
+          .catch((error)=>{  console.log(error)  });
+
+    }
   }
 }
 </script>

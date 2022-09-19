@@ -98,7 +98,7 @@ export default {
           .get('https://server.elfiro.com/api/v1/client/dashboard')
           .then((response) => {
             this.info = response.data.data;
-            console.log(response);
+            // console.log(response);
 
           })
       .catch((error)=>{

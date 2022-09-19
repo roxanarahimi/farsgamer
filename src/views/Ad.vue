@@ -84,7 +84,7 @@
       <div class="text-start mt-4">
 
 
-        <a class="text-primary" >چت آنلاین</a>
+        <a @click="ChatOnline" style="cursor: pointer" class="text-primary"  >چت آنلاین</a>
         <a :href="'tel:'+order?.user?.phone" class="btn btn-outline-primary  me-4" style="height: 42px" >اطلاعات تماس</a>
         <btn-primary-shadow  class=" me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">معامله آنلاین</btn-primary-shadow>
 
@@ -168,6 +168,26 @@ export default {
     }).catch((error)=>{console.log(error)});
   },
   methods: {
+    ChatOnline(){
+      console.log(this.order)
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      }).post('https://server.elfiro.com/api/v1/client/chat/new',{
+        confirmLaw: 1,
+        user_target: this.order.user.id
+      })
+      .then((response)=>{
+        console.log(response)
+        localStorage.setItem('chat_g_id',response.data.data.group.record.id)
+
+        window.location = '/chat'
+      }).catch((error)=>{
+            console.log(error)})
+    },
     termsToggle(){
       document.querySelector('#terms').checked
           ?
