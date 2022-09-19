@@ -19,9 +19,9 @@
           <span class="visually-hidden">New alerts</span>
          </span>
         </span>
-       <span class="my-2 mx-1 px-2 text-primary cursor position-relative d-none d-lg-inline-block"
+       <router-link to="/chat" class="my-2 mx-1 px-2 text-primary cursor position-relative d-none d-lg-inline-block"
                            style=" line-height:37px;width: 37px; height: 37px; background-color: #eeeeee; border-radius: 5px; text-align: center; "><i
-         class="bi bi-chat-dots"></i></span>
+         class="bi bi-chat-dots"></i></router-link>
        <span class="my-2 mx-1 px-2 text-primary cursor position-relative"
              style=" line-height:37px;width: 37px; height: 37px; background-color: #eeeeee; border-radius: 5px; text-align: center; ">
 <i class="isax isax-square"></i>

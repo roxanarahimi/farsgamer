@@ -16,7 +16,7 @@
               <div class="rounded" style="width: 60px; height: 60px; background-color: rgba(149,69,255,0.55)">
 
               </div>
-              <h2 class="fw-bold text-center">1</h2>
+              <h2 class="fw-bold text-center">{{ info?.details?.orders }}</h2>
               <p class="fw-bold text-center">تعداد آگهی</p>
 
             </div>
@@ -26,7 +26,7 @@
               <div class="rounded" style="width: 60px; height: 60px; background-color: rgba(149,69,255,0.55)">
 
               </div>
-              <h2 class="fw-bold text-center">300</h2>
+              <h2 class="fw-bold text-center">{{ info?.details?.orders_views_count }}</h2>
               <p class="fw-bold text-center">تعداد بازدید آگهی ها</p>
 
             </div>
@@ -36,7 +36,7 @@
               <div class="rounded" style="width: 60px; height: 60px; background-color: rgba(149,69,255,0.55)">
 
               </div>
-              <h2 class="fw-bold text-center">0</h2>
+              <h2 class="fw-bold text-center">{{  info?.details?.orders_has_transaction }}</h2>
               <p class="fw-bold text-center">تعداد آگهی های در حال معامله</p>
 
             </div>
@@ -72,6 +72,7 @@ export default {
     return{
       user: JSON.parse(localStorage.getItem('user')),
       token: localStorage.getItem('token'),
+      info: {}
     }
   },
   mounted() {
@@ -96,6 +97,7 @@ export default {
       })
           .get('https://server.elfiro.com/api/v1/client/dashboard')
           .then((response) => {
+            this.info = response.data.data;
             console.log(response);
 
           })

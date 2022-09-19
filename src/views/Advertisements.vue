@@ -11,7 +11,7 @@
       <div class="mx-auto row  py-5 pt-2 ">
 
 
-        <div v-for="product in 14" :key="product" class=" col-12 col-lg-6 col-xl-4 col-xxl-3">
+        <div v-for="product in 12" :key="product" class=" col-12 col-lg-6 col-xl-4 col-xxl-3 mb-3">
           <div class="card ">
             <div class="card-body p-2">
               <img src="img/sample.jpg" class="w-100 rounded" alt="">

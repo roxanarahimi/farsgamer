@@ -210,6 +210,7 @@ th, td {
   cursor: pointer;
 }
 
+
 @media (max-width: 991px) {
   #page_content {
     width: 100%;
