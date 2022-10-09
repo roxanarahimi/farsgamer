@@ -10,7 +10,7 @@
                   id="breadcrumb"></b></div>
             </div>
             <div v-if="level < 3" class="col-lg-10 col-xxl-8 mb-4">
-              <label for="item">انتخاب دسته بندی</label>
+              <label>انتخاب دسته بندی</label>
               <select @change="selectCategory" id="categories" class="form-select">
                 <option v-for="item in categories" :key="item.id" :value="item.id">{{ item.title }}</option>
               </select>
@@ -65,6 +65,7 @@
 <script>
 import BtnPrimaryShadow from "@/components/BtnPrimaryShadow";
 import Dropzone from "@/components/dropZone";
+import {toArray} from "core-js/internals/async-iterator-iteration";
 
 export default {
   name: "CreateAd",
@@ -152,56 +153,62 @@ export default {
       this.level = parseInt(level) + 1;
 
     },
-    submit() {
-      // this.img = document.querySelector('#dzFile').files[0]
-      //
-      //
-      // console.log(this.img);
-
-
-      let code= document.querySelector('#dzFile').value;
-      function dataURLtoFile(code, filename='image.jpg') {
-
-        var arr = code.split(','),
-            mime = arr[0].match(/:(.*?);/)[1],
-            bstr = atob(arr[1]),
-            n = bstr.length,
-            u8arr = new Uint8Array(n);
-
-        while(n--){
-          u8arr[n] = bstr.charCodeAt(n);
+       getBase64(file) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+          console.log(reader.result);
         }
-
-        return new File([u8arr], filename, {type:mime});
-      }
-      var file = dataURLtoFile(code);
-      console.log(file);
-
-
-      // axios.create({
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Accept': 'application/json',
-      //     'Authorization': localStorage.getItem('token'),
-      //   }
-      // })
-      //     .post('https://server.elfiro.com/api/v1/client/orders',{
-      //       category_id: document.querySelector('#categories').value,
-      //       name: document.querySelector('#name').value,
-      //       content: document.querySelector('#content').value,
-      //       price: document.querySelector('#price').value,
-      //       image: Dropzone.setup().image.value,
-      //       gallery: [],
-      //       platforms: [],
-      //       parameters: [], // id,value
-      //       // province: '',
-      //       // city: '',
-      //     })
+        reader.onerror = function (error) {
+          console.log('Error: ', error);
+        }
+      },
+    submit() {
+      this.img = document.querySelector('#dzFile').files[0]
       //
-      //     .then((response) => {
-      //       console.log(response)
-      //     })
-      //     .catch((error) => {  console.log(error) });
+      //
+      console.log(this.img);
+      const formData = new FormData();
+      formData.append("category_id", 1);
+      formData.append("image", document.querySelector('#dzFile').files[0]);
+      formData.append("name", document.querySelector('#name').value);
+      formData.append("content", document.querySelector('#content').value);
+      formData.append("price", document.querySelector('#price').value);
+      // formData.append("gallery", []);
+      // formData.append("platforms", ['android']);
+      // formData.append("parameters", []);
+
+
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': localStorage.getItem('token'),
+        }
+      })
+          .post('https://server.elfiro.com/api/v1/client/orders',
+          formData
+              //     {
+          //   // formData,
+          //   category_id: document.querySelector('#categories').value,
+          //   name: document.querySelector('#name').value,
+          //   content: document.querySelector('#content').value,
+          //   price: document.querySelector('#price').value,
+          //   // // image: this.getBase64(document.querySelector('#dzFile')),
+          //   image: formData,
+          //   // // image: document.querySelector('#dzFile'),
+          //   gallery: [],
+          //   platforms: [],
+          //   parameters: [], // id,value
+          //   // // province: '',
+          //   // // city: '',
+          // }
+          )
+
+          .then((response) => {
+            console.log(response)
+          })
+          .catch((error) => {  console.log(error) });
     }
   }
 

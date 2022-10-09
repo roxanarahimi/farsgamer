@@ -13,6 +13,7 @@
               <img src="img/sample.jpg" class="w-100 rounded" alt="">
 
               <p class="fw-bold text-center py-2 px-4">اکانت فورتنایت از سیزن دو اکانت فورتنایت از سیزن دو </p>
+              <p class="fw-bold text-center py-2 px-4">{{  product.user.id }} </p>
               <div class="d-flex justify-content-between">
                 <button class="btn border text-primary py-2 " style="width: 33%; font-size: 12px">ویرایش</button>
                 <button class="btn border text-secondary py-2 " style="width: 33%; font-size: 12px">فروخته شد</button>
@@ -34,6 +35,9 @@ export default {
       info: {}
     }
   },
+  mounted() {
+    this.adsByStatus()
+  },
   methods:{
     adsByStatus(status){
       axios.create({
@@ -46,14 +50,15 @@ export default {
           .get('https://server.elfiro.com/api/v1/client/orders')
           .then((response) => {
             this.info = response.data.data.orders.records;
+            console.log('mmm',response)
           }).catch((error) => {
         console.log(error)
       });
       let el = document.querySelector('.btn-active');
-      el.classList.remove('btn-active');
-      el.classList.add('text-muted');
-      document.querySelector('#'+status).classList.add('btn-active');
-      document.querySelector('#'+status).classList.remove('text-muted');
+      el?.classList.remove('btn-active');
+      el?.classList.add('text-muted');
+      document.querySelector('#'+status)?.classList.add('btn-active');
+      document.querySelector('#'+status)?.classList.remove('text-muted');
     }
   }
 }

@@ -6,7 +6,7 @@
 
   <div class="row flex-row-reverse px-3">
     <div class=" col-xxl-3 p-0 m-0 px-xxl-3 mb-3">
-      <div class="card h-100">
+      <div v-if="detail" class="card h-100">
         <div class="card-body">
           <div class="row">
             <div class="col-lg-12 mb-3">
@@ -16,7 +16,7 @@
                   موجودی کیف پول
                 </p>
                 <h3 class="text-center mt-4">
-                  3,000,000 تومان
+                  {{ detail.total_inventory }} تومان
                 </h3>
               </div>
 
@@ -25,7 +25,7 @@
               <p>قابل برداشت</p>
               <div class=" mx-auto rounded " style="overflow: hidden; background-color: #eeeeee; ">
                 <div class="d-flex w-100 h-100 py-3 px-3 " style="border-left:8px solid #00da34;  ">
-                  <p class="mb-0 w-100 text-center fw-lighter"><span class="fw-bold h3">1,500,000</span> تومان</p>
+                  <p class="mb-0 w-100 text-center fw-lighter"><span class="fw-bold h3">{{  detail.removable_inventory }}</span> تومان</p>
                 </div>
               </div>
             </div>
@@ -33,12 +33,12 @@
               <p>در حال معامله</p>
               <div class=" mx-auto rounded " style="overflow: hidden; background-color: #eeeeee;  ">
                 <div class="d-flex w-100 h-100 py-3 px-3 " style="border-left:8px solid #ffbf00;  ">
-                  <p class="mb-0 w-100 text-center fw-lighter"><span class="fw-bold h3">1,500,000</span> تومان</p>
+                  <p class="mb-0 w-100 text-center fw-lighter"><span class="fw-bold h3">{{detail.inventory_being_traded}}</span> تومان</p>
                 </div>
               </div>
             </div>
             <div class="col-lg-12 mb-3">
-              <btn-primary-shadow class="w-100 d-none d-lg-block">
+              <btn-primary-shadow @click="withrawRequest" class="w-100 d-none d-lg-block">
                 برداشت وجه
               </btn-primary-shadow>
             </div>
@@ -60,7 +60,7 @@
     <div class=" col-xxl-9 p-0 m-0 border rounded  mb-3 d-none d-lg-block" style="min-height: 600px" v-if="true">
       <table class="table mb-0 rounded-top text-muted">
         <thead class="bg-light rounded-top">
-        <tr class=" rounded-top">
+        <tr  class=" rounded-top">
           <th scope="col" class=" rounded-top">تاریخ</th>
           <th scope="col">وضعیت</th>
           <th scope="col">کد پیگیری</th>
@@ -68,17 +68,11 @@
         </tr>
         </thead>
         <tbody class="rounded-top">
-        <tr>
-          <td>1401-04-03</td>
-          <td class="text-primary">برداشت وجه</td>
-          <td>123456789</td>
-          <td>154000 تومان</td>
-        </tr>
-        <tr>
-          <td scope="row">1401-04-03</td>
-          <td class="text-success">واریز وجه</td>
-          <td>123456789</td>
-          <td>154000 تومان</td>
+        <tr v-for="item in acc">
+          <td>{{ item.date}}</td>
+          <td class="text-primary">{{ item.status_label}}</td>
+          <td>{{ item.ticket_id }}</td>
+          <td>{{ item.price }} تومان</td>
         </tr>
         </tbody>
       </table>
@@ -115,7 +109,62 @@ import BtnPrimaryShadow from "@/components/BtnPrimaryShadow";
 
 export default {
   name: "Accounting",
-  components: {BtnPrimaryShadow}
+  components: {BtnPrimaryShadow},
+  data(){
+    return{
+      acc: {},
+      detail: {}
+    }
+  },
+  mounted() {
+    this.getData();
+  },
+  methods: {
+    getData() {
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': localStorage.getItem('token'),
+        }
+      })
+          .get('https://server.elfiro.com/api/v1/client/accounting')
+          .then((response) => {
+            this.acc = response.data.data.requests.records;
+          }).catch((error) => {
+        console.log(error)
+      });
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': localStorage.getItem('token'),
+        }
+      })
+          .get('https://server.elfiro.com/api/v1/client/accounting/details')
+          .then((response) => {
+            this.detail = response.data.data.details;
+          }).catch((error) => {
+        console.log(error)
+      });
+    },
+    withrawRequest(){
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': localStorage.getItem('token'),
+        }
+      })
+          .post('https://server.elfiro.com/api/v1/client/accounting',{
+            price: 0,
+            card: 0
+          })
+          .then((response) => {
+            this.acc = response.data.data.requests.records;
+          }).catch((error) => { console.log(error)  });
+    }
+  }
 }
 </script>
 

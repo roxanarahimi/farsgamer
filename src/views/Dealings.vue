@@ -12,15 +12,15 @@
     <div class="col-12 " v-if="true">
       <div class="mx-auto row  py-5 pt-2 ">
 
-        <div class="card p-0">
+        <div v-for="item in transactions" class="card p-0 mb-3">
           <div class="card-header d-flex justify-content-between d-lg-block">
             <div class="row">
               <div class="d-flex justify-content-between col-lg-5">
-                <p class="mb-0 mt-2 ms-lg-5">تاریخ: 03-05-1401</p>
-                <p class="mb-0 mt-2 me-lg-5">شناسه معامله: 1234561401</p>
+                <p class="mb-0 mt-2 ms-lg-5">تاریخ:{{ item.date}}</p>
+                <p class="mb-0 mt-2 me-lg-5">شناسه معامله: {{ item.code }}</p>
               </div>
               <div class="d-flex justify-content-between justify-content-lg-endcol-lg-6">
-                <p class="mb-0 mt-2 ms-2"> وضعیت معامله: تایید اطلاعات</p>
+                <p class="mb-0 mt-2 ms-2"> وضعیت معامله: {{ item.status_label }}</p>
                 <button class="btn btn-success py-0 text-light">معامله خرید</button>
               </div>
             </div>
@@ -31,13 +31,13 @@
 
            <div class="row px-3">
              <div class="rounded col-5 col-lg-2 ms-3 px-0 py-4" style="padding-top: 20px; background-color: #eeeeee;">
-             <img src="img/sample.jpg" class="w-100">
+             <img :src="item.order.image" class="w-100">
            </div>
 
              <div class="col-7 col-lg-10 row">
-               <h4 class="col-lg-7 mt-5" >اکانت فورتنایت از سیزن دو فورتنایت از سیزن دو</h4>
+               <h4 class="col-lg-7 mt-5" >{{ item.order.name }}</h4>
                <h6 class="col-lg-5  my-3 my-lg-5 pt-2 text-muted float-end " >نام فروشنده :
-                 <span class="text-primary">roxana</span></h6>
+                 <span class="text-primary">{{  item.seller.name }}</span></h6>
              </div>
              <div class="col-12">
                <h6 class="text-primary w-100 text-start"> مشاهده معامله <i class="bi bi-chevron-left"></i></h6>
@@ -54,9 +54,35 @@
 <script>
 export default {
   name: "Dealings",
+  data(){
+    return{
+      transactions: {}
+    }
+  },
+  mounted() {
+    this.getData();
+  },
   methods:{
+    getData(){
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': localStorage.getItem('token'),
+        }
+      })
+          .get('https://server.elfiro.com/api/v1/client/transactions')
+          .then((response) => {
+            this.transactions = response.data.data.transactions.records;
+            console.log('aa', this.transactions)
+          }).catch((error) => {console.log(error) });
+    },
     dealsByType(type){
-      //api....
+
+      this.getData();
+      // this.transactions.filter((a)=>{
+      //   a.tab = type .....??
+      // })
       let el = document.querySelector('.btn-active');
       el.classList.remove('btn-active');
       el.classList.add('text-muted');

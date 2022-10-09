@@ -14,7 +14,7 @@
 
       <div class="mx-auto row py-5 pt-2 text-center  border rounded bg-light position-relative"
            style="width: 200px; height: 200px ">
-        <img src="img/avatar.png" class="rounded mx-auto rounded-top" style="width: 200px;" alt="">
+        <img :src="user.profile_image" class="rounded mx-auto rounded-top" style="width: 200px;" alt="">
         <div class="avatar-frame rounded-bottom" style="width: 200px; height: 40px; background-color: rgba(255,255,255,0.8);
         position: absolute; bottom: 0; right: 0 ">
           <p class="m-0 text-center fw-bold pointer" style="line-height: 40px" data-bs-toggle="modal"
@@ -32,39 +32,39 @@
             <div class="col-12 mb-3">
               <label class="mb-2" for="bio">بایوگرافی</label>
 
-              <textarea class="form-control" rows="8" id="bio" placeholder="لطفا در مورد خود بنویسید"></textarea>
+              <textarea class="form-control" rows="8" id="bio" placeholder="لطفا در مورد خود بنویسید">{{ user.descriptions }}</textarea>
             </div>
             <div class="col-lg-6 mb-3">
               <label class="mb-2" for="name">نام</label>
-              <input type="text" class="form-control" id="name" value="اکبر"/>
+              <input type="text" class="form-control" id="name" :value=" user.name "/>
             </div>
             <div class="col-lg-6 mb-3">
               <label class="mb-2" for="lastName">نام خانوادگی</label>
-              <input type="text" class="form-control" id="lastName" value="ماست بند"/>
+              <input type="text" class="form-control" id="lastName" :value=" user.name " />
             </div>
             <div class="col-lg-6 mb-3">
               <label class="mb-2" for="name">نام کاربری</label>
-              <input type="text" class="form-control" id="name" value="اکبر"/>
+              <input type="text" class="form-control" id="name" :value="user.user_name"/>
             </div>
             <div class="col-lg-6 mb-3">
               <label class="mb-2" for="lastName">ایمیل</label>
-              <input type="text" class="form-control" id="lastName" value="akbar@gmail.com"/>
+              <input type="text" class="form-control" id="lastName" :value="user.email"/>
             </div>
             <div class="col-lg-6 mb-3">
               <label class="mb-2" for="lastName">نام بانک</label>
-              <input type="text" class="form-control" id="lastName" value=""/>
+              <input type="text" class="form-control" id="lastName"  />
             </div>
             <div class="col-lg-6 mb-3">
               <label class="mb-2" for="lastName">شماره کارت</label>
-              <input type="text" class="form-control" id="lastName" value=""/>
+              <input type="text" class="form-control" id="lastName"  />
             </div>
             <div class="col-lg-12 mb-3">
               <label class="mb-2" for="lastName">شماره شبا</label>
-              <input type="text" class="form-control" id="lastName" value=""/>
+              <input type="text" class="form-control" id="lastName"  />
             </div>
 
             <div class="col-lg-12 mb-3">
-              <input type="submit" class="btn btn-outline-primary" value="ثبت مشخصات"/>
+              <input type="submit" class="btn btn-outline-primary" />
             </div>
 
 
@@ -97,7 +97,37 @@
 
 <script>
 export default {
-  name: "Profile"
+  name: "Profile",
+  data(){
+
+    return{
+      user: {},
+
+    }
+  },
+  mounted() {
+    this.getUser();
+  },
+  methods:{
+    getUser(){
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      })
+          .get('https://server.elfiro.com/api/v1/client/profile')
+          .then((response) => {
+            this.user = response.data.data.user;
+            console.log(response);
+
+          })
+          .catch((error)=>{
+            console.log(error);
+          })
+    }
+  }
 }
 </script>
 
