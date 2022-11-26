@@ -45,8 +45,8 @@
 
             <div class="col-lg-12 mb-3 d-flex">
               <input type="text" class="rounded-0 rounded-end px-2" style="width: calc(100% - 120px)"
-                     placeholder="مبلغ به تومان">
-              <btn-primary-shadow class="h-100" style="width: 135px !important; margin-right: -5px; font-size: 14px">
+                 id="chargeAmount"    placeholder="مبلغ به تومان">
+              <btn-primary-shadow @click="chargeWallet" class="h-100" style="width: 135px !important; margin-right: -5px; font-size: 14px">
                 شارژ کیف پول
               </btn-primary-shadow>
             </div>
@@ -163,7 +163,29 @@ export default {
           .then((response) => {
             this.acc = response.data.data.requests.records;
           }).catch((error) => { console.log(error)  });
-    }
+    },
+    chargeWallet(){
+      if (document.querySelector('#chargeAmount').value < 10000){
+        alert('مبلغ شارژ باید بیش از 10,000 تومان باشد')
+      }else {
+        axios.create({
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': localStorage.getItem('token'),
+          }
+        })
+            .post('https://server.elfiro.com/api/v1/client/accounting/charge',{
+          price: document.querySelector('#chargeAmount').value,
+          gateway: 'zarinpal',
+          call_back_address: 'https://farsgamer.webagent.ir/accounting'
+        })
+        .then((res)=>{
+          window.location = res.data.data.gateway.link;
+        })
+        .catch((err)=>{ console.log(err) })
+      }
+    },
   }
 }
 </script>
