@@ -60,9 +60,11 @@ const routes = [
         component: () => import(/* webpackChunkName: "createAd" */ '../views/CreateAd.vue')
     },
     {
-        path: '/deal',
+        path: '/deal/:id',
         name: 'Deal',
-        component: () => import(/* webpackChunkName: "deal" */ '../views/DealOwner.vue')
+        component: () => import(/* webpackChunkName: "deal" */ '../views/Deal.vue'),
+        props: true,
+        params:true,
     },
     {
         path: '/chat',

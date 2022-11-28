@@ -21,7 +21,7 @@
               </div>
               <div class="d-flex justify-content-between justify-content-lg-endcol-lg-6">
                 <p class="mb-0 mt-2 ms-2"> وضعیت معامله: {{ item.status_label }}</p>
-                <button class="btn btn-success py-0 text-light">معامله خرید</button>
+                <span class="btn btn-success py-0 text-light">معامله خرید</span>
               </div>
             </div>
           </div>
@@ -40,7 +40,7 @@
                  <span class="text-primary">{{  item.seller.name }}</span></h6>
              </div>
              <div class="col-12">
-               <h6 class="text-primary w-100 text-start"> مشاهده معامله <i class="bi bi-chevron-left"></i></h6>
+               <router-link :to="'/deal/'+ item.id" class="text-primary h6 w-100 text-start"> مشاهده معامله <i class="bi bi-chevron-left"></i></router-link>
              </div>
            </div>
 
