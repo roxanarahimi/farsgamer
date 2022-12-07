@@ -48,7 +48,7 @@ export default {
       this.errors = [];
       if (document.querySelector('#mobile').value.length === 0) {
         this.errors.push('شماره موبایل را وارد کنید.')
-      }else if (!document.querySelector('#mobile').value.toString().startsWith('09')) {
+      } else if (!document.querySelector('#mobile').value.toString().startsWith('09')) {
         this.errors.push('شماره موبایل باید با 09 شروع شود.')
 
       }
@@ -76,6 +76,12 @@ export default {
               }
             });
       }
+    },
+    getMobile() {
+      document.querySelector('#loginMobile').classList.remove('d-none');
+      document.querySelector('#loginCode').classList.add('d-none');
+
+
     },
     count() {
       document.querySelector('#resend').classList.remove('text-primary');

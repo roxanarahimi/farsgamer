@@ -7,7 +7,7 @@
       <input id="code" class="form-control en" type="text">
     </div>
     <div class="d-flex justify-content-between mb-5"  style="font-size: 12px">
-      <router-link to="/login" class="small text-muted">تصحیح شماره همراه</router-link>
+      <router-link to="/login" @click="this.$parent.getMobile" class="small text-muted">تصحیح شماره همراه</router-link>
 
       <p class="small text-black-50 d-flex justify-content-between">
         <span @click.prevent="this.$parent.reSendCode" id="resend" style="display:inline-block;">

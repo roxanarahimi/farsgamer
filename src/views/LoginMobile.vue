@@ -12,7 +12,7 @@
         <p class="my-1">تایید</p>
       </button>
     </div>
-    <p class="small"  style="font-size: 16px">حساب کاربری ندارید؟  <router-link to="/register" class="text-primary">ثبت نام</router-link></p>
+    <p class="small"  style="font-size: 16px">حساب کاربری ندارید؟ <router-link to="/register" class="text-primary">ثبت نام</router-link></p>
 
   </form>
 </template>
