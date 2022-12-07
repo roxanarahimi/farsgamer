@@ -1,6 +1,8 @@
 <template>
   <form id="loginCode" class="d-none"  style="margin-top: 30vh">
-    <p class="fw-bold mb-5" style="font-size: 22px">کد ارسال شده به شماره <span id="sent" class="text-primary mx-2"></span> را وارد کنید </p>
+    <p class="fw-bold mb-5" style="font-size: 22px">کد ارسال شده به شماره
+      <input disabled id="sent" v-model="mobilee" class="text-primary mx-2">
+      را وارد کنید </p>
 
     <div class="col-xl-12 mb-2">
       <label for="code" class="small text-muted mb-4" style="font-size: 12px">کد ارسالی</label>
@@ -30,7 +32,16 @@
 
 <script>
 export default {
-  name: "LoginCode"
+  data(){
+    return{
+      name: "LoginCode",
+      mobilee: '',
+    }
+  },
+  mounted() {
+    this.mobilee = document.getElementById('mobile').value;
+
+  }
 }
 </script>
 
@@ -45,6 +56,14 @@ button{
 input{
   height: 50px;
   border-radius: 8px;
+
+}
+#sent{
+  width: 130px !important;
+  background-color: transparent !important;
+  outline: transparent !important;
+  display: inline !important;
+  border: none;
 
 }
 </style>
