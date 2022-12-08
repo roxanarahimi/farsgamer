@@ -53,11 +53,13 @@
         <img class="" src="/img/3.jpg" style="margin-top: 50px !important;width: 400px"  alt="">
         <div class="card bg-light" style="   min-height: 50px">
           <div class="card-body text-center">
-            <p class=" text-center text-primary fw-bold  mt-1">لطفا تا پایان زمان مقرر ساعت دیگر منتظر تایید اطلاعات از طرف پشتیبانی باشید</p>
+            <p class=" text-center text-primary fw-bold  mt-1">
+              {{ this.$parent.transaction.record.current_status_data.message }}
+            </p>
           </div>
         </div>
         <div class="d-flex justify-content-center mt-3">
-          <button disabled class="btn btn-secondary mx-2">پایان معامله</button>
+          <button class="btn btn-secondary mx-2">پایان معامله</button>
           <button class="btn btn-outline-primary mx-2 px-4">اطلاعات مشکل دارد</button>
         </div>
 

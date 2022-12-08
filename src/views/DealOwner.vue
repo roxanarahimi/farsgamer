@@ -22,8 +22,8 @@
                 </div>
               </div>
               <div class="d-flex justify-content-center mt-3">
-                <btn-primary-shadow class="btn btn-primary mx-2">شروع معامله</btn-primary-shadow>
-                <button class="btn btn-outline-primary mx-2 px-4">رد درخواست</button>
+                <btn-primary-shadow class="btn btn-primary mx-2" @click.prevent="this.$parent.update">شروع معامله</btn-primary-shadow>
+                <button class="btn btn-outline-primary mx-2 px-4" @click.prevent="this.$parent.update">رد درخواست</button>
               </div>
             </div>
             </div>

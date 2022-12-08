@@ -7,9 +7,12 @@
         <img src="/img/avatar.png" style="width: 92px; height:92px;" alt="">
         <router-link to="/dashboard" v-if="user" class=" h4 fw-bolder text-primary text-center mt-2 d-block">{{ user.name }}</router-link>
         <router-link v-else to="/login" class="text-black-50 text-center mb-1 mt-3 d-block"><i class="bi bi-person"></i> ورود/ ثبت نام</router-link>
-        <btn-primary-shadow>
-          <i class="bi bi-plus d-inline-block" style="font-size: 20px"></i>ثبت آگهی
-        </btn-primary-shadow>
+       <router-link to="/ad+">
+         <btn-primary-shadow>
+           <i class="bi bi-plus d-inline-block" style="font-size: 20px"></i>ثبت آگهی
+         </btn-primary-shadow>
+       </router-link>
+
 
 
       </div>
@@ -112,9 +115,12 @@
             <img src="/img/avatar.png" style="width: 92px; height:92px;" alt="">
             <router-link to="/dashboard" v-if="user" class=" h4 fw-bolder text-primary text-center mt-2 d-block">{{ user.name }}</router-link>
             <router-link v-else to="/login" class="text-black-50 text-center mb-1 mt-3 d-block"><i class="bi bi-person"></i> ورود/ ثبت نام</router-link>
-            <btn-primary-shadow>
-              <i class="bi bi-plus d-inline-block" style="font-size: 20px"></i>ثبت آگهی
-            </btn-primary-shadow>
+            <router-link to="/ad+">
+              <btn-primary-shadow>
+                <i class="bi bi-plus d-inline-block" style="font-size: 20px"></i>ثبت آگهی
+              </btn-primary-shadow>
+            </router-link>
+
 
 
           </div>

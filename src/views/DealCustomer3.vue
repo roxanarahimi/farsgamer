@@ -53,12 +53,14 @@
         <img class="" src="/img/1.jpg" style="margin-top: 50px !important;width: 400px"  alt="">
         <div class="card bg-light" style="   min-height: 50px">
           <div class="card-body text-center">
-            <p class=" text-center text-primary fw-bold  mt-1">لطفا تا 12 ساعت دیگر منتظر اطلاعات محصول از طرف فروشنده باشید</p>
+            <p class=" text-center text-primary fw-bold  mt-1">
+              {{ this.$parent.transaction.record.current_status_data.message }}
+            </p>
           </div>
         </div>
         <div class="d-flex justify-content-center mt-3">
-          <btn-primary-shadow class="btn btn-primary mx-2">عدم دریافت</btn-primary-shadow>
-          <button class="btn btn-outline-primary mx-2 px-4">لغو معامله</button>
+          <btn-primary-shadow class="btn btn-primary mx-2" @click.prevent = "this.$parent.update({})"> دریافت</btn-primary-shadow>
+          <button class="btn btn-outline-primary mx-2 px-4" @click.prevent = "this.$parent.update({received_result: false})">عدم دریافت</button>
         </div>
 
       </div>

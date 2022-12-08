@@ -12,7 +12,7 @@
             <div class="card-body p-2">
               <img src="img/sample.jpg" class="w-100 rounded" alt="">
 
-              <p class="fw-bold text-center py-2 px-4">اکانت فورتنایت از سیزن دو اکانت فورتنایت از سیزن دو </p>
+              <p class="fw-bold text-center py-2 px-4">{{ product.name}} </p>
               <p class="fw-bold text-center py-2 px-4">{{  product.user.id }} </p>
               <div class="d-flex justify-content-between">
                 <button class="btn border text-primary py-2 " style="width: 33%; font-size: 12px">ویرایش</button>

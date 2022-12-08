@@ -48,14 +48,15 @@ export default {
               .then((response) => {
                 transaction.value = response.data.data.transaction;
                 status.value = transaction.value.record.status;
-                console.log('aa', status)
+                console.log('aa', response.data.data)
               })
               .then(()=>{
 
                 if (user.id === transaction.value.record.seller.id){
                   // alert('seller')
-                  switch (this.status) {
+                  switch (status.value) {
                     case "requested": {
+                      components.value.push({name:'deal-owner1'});
                       break;
                     }
                     case "wait_for_confirm": {
@@ -139,6 +140,7 @@ export default {
 
                     }
                     case "wait_for_receive": {
+                      components.value.push({name:'deal-customer4'});
                       break;
 
                     }
@@ -194,6 +196,19 @@ export default {
 
 
   methods: {
+    update(params){
+      // alert(this.$route.params.id)
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': localStorage.getItem('token'),
+        }
+      }).post('https://server.elfiro.com/api/v1/client/transactions/'+this.$route.params.id, params)
+      .then((response)=>{
+        console.log(response)
+      }).catch((error)=>console.error(error))
+    }
   }
 }
 </script>
