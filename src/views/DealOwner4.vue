@@ -53,7 +53,9 @@
         <img class="" src="/img/3.jpg" style="margin-top: 50px !important;width: 400px"  alt="">
         <div class="card bg-light" style="   min-height: 50px">
           <div class="card-body text-center">
-            <p class=" text-center text-primary fw-bold  mt-1">لطفا تا 48 ساعت دیگر منتظر تایید اطلاعات از طرف خریدار باشید</p>
+            <p class=" text-center text-primary fw-bold  mt-1">
+              {{ this.$parent.transaction.record.current_status_data.message }}
+            </p>
           </div>
         </div>
       </div>

@@ -53,7 +53,9 @@
         <img class="" src="/img/1.jpg" style="margin-top: 50px !important;width: 400px"  alt="">
         <div class="card bg-light" style="   min-height: 50px">
           <div class="card-body text-center">
-            <p class=" text-center text-primary fw-bold  mt-1">لطفا تا 12 ساعت دیگر اطلاعات محصول را وارد کنید</p>
+            <p class=" text-center text-primary fw-bold  mt-1">ل
+              {{ this.$parent.transaction.record.current_status_data.message }}
+            </p>
 
 
           </div>
@@ -61,11 +63,11 @@
         </div>
         <div class="w-100 ">
           <label for="" >مشخصات محصول</label>
-        <textarea class="form-control mt-3" name="" id="" cols="30" rows="5"
+        <textarea v-model="content" class="form-control mt-3" name="" id="" cols="30" rows="5"
         placeholder="تمامی دسترسی های محصول را در اینجا وارد نمایید"></textarea>
       </div>
         <div class="d-flex justify-content-center mt-3">
-          <btn-primary-shadow class="btn btn-primary mx-2">ارسال اطلاعات</btn-primary-shadow>
+          <btn-primary-shadow class="btn btn-primary mx-2" @click.prevent = "this.$parent.update({content: content})">ارسال اطلاعات</btn-primary-shadow>
           <button class="btn btn-outline-primary mx-2 px-4">لغو معامله</button>
         </div>
 
@@ -80,7 +82,12 @@ import BtnPrimaryShadow from "@/components/BtnPrimaryShadow";
 
 export default {
   name: "Deal",
-  components: {BtnPrimaryShadow, Profile}
+  components: {BtnPrimaryShadow, Profile},
+  data(){
+    return{
+      content: '',
+    }
+  }
 }
 </script>
 

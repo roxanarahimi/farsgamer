@@ -82,6 +82,7 @@ export default {
 
                     }
                     case "wait_for_receive": {
+                      components.value.push({name:'deal-owner4'});
                       break;
 
                     }
