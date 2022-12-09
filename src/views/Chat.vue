@@ -11,6 +11,9 @@
    </div>
    <div class="chat row p-5 pt-0 m-0 " style="">
 
+     <div  v-if="!chats.length" class="text-center">
+       <img src="/img/66.png" style="width: 300px;"  alt="">
+     </div>
      <div v-if="chats.length" class="d-flex justify-content-center">
        <div class="col-4 mt-3 p-3 bg-light border border-primary rounded mb-3" style="background-color: lightgrey !important">
          <p>قوانین چت</p>
