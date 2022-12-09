@@ -1,10 +1,10 @@
 <template>
- <div>
-   <div class="row" >
-<!--     <component v-show="status === 'wait_for_confirm' "  is = "deal-customer1"/>-->
-     <component  v-for = "component in components" :is = "component.name"/>
-   </div>
- </div>
+  <div>
+    <div class="row">
+      <!--     <component v-show="status === 'wait_for_confirm' "  is = "deal-customer1"/>-->
+      <component v-for="component in components" :is="component.name"/>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -30,174 +30,186 @@ export default {
     dealOwner1, dealOwner2, dealOwner3, dealOwner4, dealOwner5,
     dealCustomer1, dealCustomer2, dealCustomer3, dealCustomer4, dealCustomer5
   },
-  setup(){
-    const user= JSON.parse(localStorage.getItem('user'));
-       const status = ref('none');
-        const transaction= ref({});
-        const components= ref([]);
-        const start = () => {
+  setup() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const status = ref('none');
+    const transaction = ref({});
+    const seller = ref({});
+    const customer = ref({});
+    const components = ref([]);
+    const start = () => {
 
-          axios.create({
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json',
-              'Authorization': localStorage.getItem('token'),
-            }
-          })
-              .get('https://server.elfiro.com/api/v1/client/transactions/'+ useRoute().params.id)
-              .then((response) => {
-                transaction.value = response.data.data.transaction;
-                status.value = transaction.value.record.status;
-                console.log('aa', response.data.data)
-              })
-              .then(()=>{
-
-                if (user.id === transaction.value.record.seller.id){
-                  // alert('seller')
-                  switch (status.value) {
-                    case "requested": {
-                      components.value.push({name:'deal-owner1'});
-                      break;
-                    }
-                    case "wait_for_confirm": {
-                      components.value.push({name:'deal-owner1'});
-
-                      break;
-
-                    }
-                    case "wait_for_pay": {
-                      components.value.push({name:'deal-owner2'});
-
-                      break;
-
-                    }
-                    case "wait_for_send": {
-                      components.value.push({name:'deal-owner3'});
-
-                      break;
-
-                    }
-                    case "wait_for_control": {
-                      break;
-
-                    }
-                    case "wait_for_receive": {
-                      components.value.push({name:'deal-owner4'});
-                      break;
-
-                    }
-                    case "not_received": {
-                      break;
-
-                    }
-                    case "completed": {
-                      break;
-
-                    }
-                    case "returned": {
-                      break;
-
-                    }
-                    case "canceled": {
-                      break;
-
-                    }
-                    case "success": {
-                      components.value.push({name:'deal-owner5'});
-
-                      break;
-
-                    }
-                  }
-                }
-                if (user.id === transaction.value.record.customer.id){
-                  // alert('customer')
-                  // document.onreadystatechange = () => {
-                  //   if (document.readyState == "complete") {
-                  //     console.log('Page completed with image and files!')
-                  switch (status.value) {
-                    case "requested": {
-                      break;
-                    }
-                    case 'wait_for_confirm': {
-                      components.value.push({name:'deal-customer1'});
-
-                      break;
-                    }
-                    case "wait_for_pay": {
-                      components.value.push({name:'deal-customer2'});
-                      break;
-
-                    }
-                    case "wait_for_send": {
-                      components.value.push({name:'deal-customer3'});
-
-                      break;
-
-                    }
-                    case "wait_for_control": {
-
-                      break;
-
-                    }
-                    case "wait_for_receive": {
-                      components.value.push({name:'deal-customer4'});
-                      break;
-
-                    }
-                    case "not_received": {
-                      break;
-
-                    }
-                    case "completed": {
-                      components.value.push({name:'deal-customer5'});
-
-                      break;
-
-                    }
-                    case "returned": {
-                      break;
-
-                    }
-                    case "canceled": {
-                      break;
-
-                    }
-                    case "success": {
-                      break;
-
-                    }
-                  }
-
-                }
-                // }
-                // }
-
-              })
-              .catch((error) => {console.log(error) });
-
-
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': localStorage.getItem('token'),
         }
+      })
+          .get('https://server.elfiro.com/api/v1/client/transactions/' + useRoute().params.id)
+          .then((response) => {
+            transaction.value = response.data.data.transaction;
+            status.value = transaction.value.record.status;
+            console.log('aa', response.data.data)
+          })
+          .then(() => {
 
-    onMounted(()=>{
+            seller.value = transaction.value.record.seller;
+            customer.value = transaction.value.record.customer;
+            document.getElementById('sellerAvatar').setAttribute('src', seller.value.profile_image)
+            document.getElementById('sellerName').innerText = seller.value.name
+            document.getElementById('customerAvatar').setAttribute('src', customer.value.profile_image)
+            document.getElementById('customerName').innerText = customer.value.name
+document.getElementById('orderImage').setAttribute('src', transaction.value.record.order.image)
+            document.getElementById('orderName').innerText =  transaction.value.record.order.name
+            document.getElementById('orderPrice').innerText =  transaction.value.record.order.price
+
+            if (user.id === transaction.value.record.seller.id) {
+              // alert('seller')
+              switch (status.value) {
+                case "requested": {
+                  components.value.push({name: 'deal-owner1'});
+                  break;
+                }
+                case "wait_for_confirm": {
+                  components.value.push({name: 'deal-owner1'});
+
+                  break;
+
+                }
+                case "wait_for_pay": {
+                  components.value.push({name: 'deal-owner2'});
+
+                  break;
+
+                }
+                case "wait_for_send": {
+                  components.value.push({name: 'deal-owner3'});
+
+                  break;
+
+                }
+                case "wait_for_control": {
+                  break;
+
+                }
+                case "wait_for_receive": {
+                  components.value.push({name: 'deal-owner4'});
+                  break;
+
+                }
+                case "not_received": {
+                  break;
+
+                }
+                case "completed": {
+                  break;
+
+                }
+                case "returned": {
+                  break;
+
+                }
+                case "canceled": {
+                  break;
+
+                }
+                case "success": {
+                  components.value.push({name: 'deal-owner5'});
+
+                  break;
+
+                }
+              }
+            }
+            if (user.id === transaction.value.record.customer.id) {
+              // alert('customer')
+              // document.onreadystatechange = () => {
+              //   if (document.readyState == "complete") {
+              //     console.log('Page completed with image and files!')
+              switch (status.value) {
+                case "requested": {
+                  break;
+                }
+                case 'wait_for_confirm': {
+                  components.value.push({name: 'deal-customer1'});
+
+                  break;
+                }
+                case "wait_for_pay": {
+                  components.value.push({name: 'deal-customer2'});
+                  break;
+
+                }
+                case "wait_for_send": {
+                  components.value.push({name: 'deal-customer3'});
+
+                  break;
+
+                }
+                case "wait_for_control": {
+
+                  break;
+
+                }
+                case "wait_for_receive": {
+                  components.value.push({name: 'deal-customer4'});
+                  break;
+
+                }
+                case "not_received": {
+                  break;
+
+                }
+                case "completed": {
+                  components.value.push({name: 'deal-customer5'});
+
+                  break;
+
+                }
+                case "returned": {
+                  break;
+
+                }
+                case "canceled": {
+                  break;
+
+                }
+                case "success": {
+                  break;
+
+                }
+              }
+
+            }
+            // }
+            // }
+
+          })
+          .catch((error) => {
+            console.log(error)
+          });
 
 
-          start();
+    }
 
+    onMounted(() => {
+
+
+      start();
 
 
     });
 
 
-
-    return{
-      user, transaction, status,start, components
+    return {
+      user, transaction, status, start, components, seller, customer
     }
   },
 
 
   methods: {
-    update(params){
+    update(params) {
       // alert(this.$route.params.id)
       axios.create({
         headers: {
@@ -205,10 +217,10 @@ export default {
           'Accept': 'application/json',
           'Authorization': localStorage.getItem('token'),
         }
-      }).post('https://server.elfiro.com/api/v1/client/transactions/'+this.$route.params.id, params)
-      .then((response)=>{
-        console.log(response)
-      }).catch((error)=>console.error(error))
+      }).post('https://server.elfiro.com/api/v1/client/transactions/' + this.$route.params.id, params)
+          .then((response) => {
+            console.log(response)
+          }).catch((error) => console.error(error))
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-3">
+    <div class="d-none d-lg-block col-lg-3">
 
       <ul style="margin-top: 50px ; list-style:none">
         <li class="text-primary mb-0" style="font-size: 40px; ">
@@ -47,10 +47,10 @@
         </li>
       </ul>
     </div>
-    <div class="col-9 row ">
+    <div class="col-12 col-lg-9            row ">
       <div class="col-2"></div>
       <div class="col-lg-6 text-center">
-        <img class="" src="/img/2.jpg" style="margin-top: 50px !important;width: 400px"  alt="">
+        <img class="" src="/img/2.jpg" style="margin-top: 50px !important;width: 100%"  alt="">
         <div class="card bg-light" style="   min-height: 50px">
           <div class="card-body text-center">
             <p class=" text-center text-primary fw-bold  mt-1">

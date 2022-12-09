@@ -1,7 +1,6 @@
 <template>
   <div class="row">
     <div class="col-12">
-
       <ul class="pb-5 pb-lg-0 mb-5 mb-lg-0" style="margin-top: 50px; list-style:none">
         <li class="text-primary mb-0" style="font-size: 40px; ">
           <p class="text-black-50 fs-6 mb-4 mt-2 " style="margin-right: -31px !important">
@@ -64,25 +63,6 @@
         </li>
       </ul>
     </div>
-<!--    <div class="col-9 col-xxl-7 row ">-->
-<!--      <div class="col-1"></div>-->
-<!--      <div class="col-xl-7">-->
-<!--        <div class="card  border-0 bg-light" style=" margin-top: 250px !important; min-height: 50px">-->
-<!--          <div class="card-body  text-center">-->
-
-<!--            <img class="rounded-circle"  src="img/avatar.png" style="width: 90px" alt="">-->
-<!--            <p class="text-primary w-100 text-center fw-bold mb-0 h5 mt-1">roxana</p>-->
-<!--            <p class="w-100 text-center text-black-50  mt-1">درخواست معامله با شما را داده آیا این معامله را شروع میکنید؟</p>-->
-
-
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="d-flex justify-content-center mt-3">-->
-<!--        <btn-primary-shadow class="btn btn-primary mx-2">شروع معامله</btn-primary-shadow>-->
-<!--        <button class="btn btn-outline-primary mx-2 px-4">رد درخواست</button>-->
-<!--      </div>-->
-<!--      </div>-->
-<!--    </div>-->
   </div>
 </template>
 
