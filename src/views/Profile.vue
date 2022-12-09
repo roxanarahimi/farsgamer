@@ -1,11 +1,11 @@
 <template>
-  <div class="d-flex justify-content-between">
+  <router-link to="auth2" class="d-flex justify-content-between">
     <h3 class=" fw-bold mb-0" style="line-height: 50px">پروفایل</h3>
     <button class="btn btn-outline-success mx-2 py-3 mb-3">
       <i class="bi bi-shield-check"></i>
       احراز هویت شده
     </button>
-  </div>
+  </router-link>
   <hr class="text-muted mb-5 mt-2">
 
   <div class="row px-3">
