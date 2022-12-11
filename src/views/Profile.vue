@@ -29,42 +29,61 @@
       <div>
         <form action="" class="mx-auto" style="max-width: 500px">
           <div class="row">
-            <div class="col-12 mb-3">
-              <label class="mb-2" for="bio">بایوگرافی</label>
+            <!--            <div class="col-12 mb-3">-->
+            <!--              <label class="mb-2" for="bio">بایوگرافی</label>-->
 
-              <textarea class="form-control" rows="8" id="bio" placeholder="لطفا در مورد خود بنویسید">{{ user.descriptions }}</textarea>
-            </div>
+            <!--              <textarea class="form-control" rows="8" id="bio" placeholder="لطفا در مورد خود بنویسید">{{ user.descriptions }}</textarea>-->
+            <!--            </div>-->
             <div class="col-lg-6 mb-3">
               <label class="mb-2" for="name">نام</label>
               <input type="text" class="form-control" id="name" :value=" user.name "/>
             </div>
+            <!--            <div class="col-lg-6 mb-3">-->
+            <!--              <label class="mb-2" for="lastName">نام خانوادگی</label>-->
+            <!--              <input type="text" class="form-control" id="lastName" :value=" user.name "/>-->
+            <!--            </div>-->
             <div class="col-lg-6 mb-3">
-              <label class="mb-2" for="lastName">نام خانوادگی</label>
-              <input type="text" class="form-control" id="lastName" :value=" user.name " />
+              <label class="mb-2" for="user_name">نام کاربری</label>
+              <input type="text" class="form-control" id="user_name" :value="user.user_name"/>
             </div>
             <div class="col-lg-6 mb-3">
-              <label class="mb-2" for="name">نام کاربری</label>
-              <input type="text" class="form-control" id="name" :value="user.user_name"/>
+              <label class="mb-2" for="email">ایمیل</label>
+              <input type="text" class="form-control" id="email" :value="user.email"/>
             </div>
             <div class="col-lg-6 mb-3">
-              <label class="mb-2" for="lastName">ایمیل</label>
-              <input type="text" class="form-control" id="lastName" :value="user.email"/>
-            </div>
-            <div class="col-lg-6 mb-3">
-              <label class="mb-2" for="lastName">نام بانک</label>
-              <input type="text" class="form-control" id="lastName"  />
-            </div>
-            <div class="col-lg-6 mb-3">
-              <label class="mb-2" for="lastName">شماره کارت</label>
-              <input type="text" class="form-control" id="lastName"  />
-            </div>
-            <div class="col-lg-12 mb-3">
-              <label class="mb-2" for="lastName">شماره شبا</label>
-              <input type="text" class="form-control" id="lastName"  />
+              <label class="mb-2" for="password">رمز عبور</label>
+              <input type="password" class="form-control" id="password" :value=" user.password "/>
             </div>
 
+            <div class="col-lg-6 mb-3">
+              <label class="mb-2" for="province">استان</label>
+              <select @change="getCities" class="form-select" name="" id="province">
+                <option> انتخاب کنید</option>
+                <option :selected="user.province == provinces[item] ? 'selected' : false" v-for="item in provincesKeys" :value="item" :key="item">{{ provinces[item] }}</option>
+              </select>
+            </div>
+            <div class="col-lg-6 mb-3">
+              <label class="mb-2" for="city">شهر</label>
+              <select  class="form-select" name="" id="city">
+                <option :selected="user.city === cities[item] ? 'selected' : false" v-for="item in citiesKeys" :value="item" :key="item">{{ cities[item] }}</option>
+              </select>
+            </div>
+            <div class="col-lg-6 mb-3">
+              <label class="mb-2" for="card_number">شماره کارت</label>
+              <input @keyup="findBankName" type="text" class="form-control" id="card_number"/>
+            </div>
+            <div class="col-lg-6 mb-3">
+              <label class="mb-2" for="bank">نام بانک</label>
+              <input disabled type="text" class="form-control" id="bank"/>
+            </div>
             <div class="col-lg-12 mb-3">
-              <input type="submit" class="btn btn-outline-primary" />
+              <label class="mb-2" for="card_sheba">شماره شبا</label>
+              <input type="text" class="form-control" id="card_sheba"/>
+            </div>
+
+
+            <div class="col-lg-12 mb-3">
+              <input type="submit" @click.prevent="updateUser" class="btn btn-outline-primary" value="ویرایش"/>
             </div>
 
 
@@ -98,18 +117,27 @@
 <script>
 export default {
   name: "Profile",
-  data(){
+  data() {
 
-    return{
+    return {
       user: {},
+      cards: {},
+      codes: {},
+      provinces: {},
+      provincesKeys: {},
+      allCities: {},
+      cities: {},
+      citiesKeys: {},
+
 
     }
   },
   mounted() {
     this.getUser();
+    this.bankCodes()
   },
-  methods:{
-    getUser(){
+  methods: {
+    getUser() {
       axios.create({
         headers: {
           'Content-Type': 'application/json',
@@ -120,12 +148,147 @@ export default {
           .get('https://server.elfiro.com/api/v1/client/profile')
           .then((response) => {
             this.user = response.data.data.user;
-            console.log(response);
+            console.log(response.data.data.details.provinces);
+
+            this.provinces = response.data.data.details.provinces;
+            this.provincesKeys = Object.keys(this.provinces);
+            this.allCities = response.data.data.details.cities;
+            if (this.user.province !== ''){
+              setTimeout(()=>{
+                this.getCities();
+              },1000)
+              // let province = document.getElementById('province').value;
+              // alert(province)
+
+              console.log(this.cities, this.citiesKeys)
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': localStorage.getItem('token'),
+        }
+      })
+          .get('https://server.elfiro.com/api/v1/client/cards')
+          .then((response) => {
+            this.cards = response.data.data.cards.records;
+            console.log('cards', this.cards.length)
+          }).catch((error) => {
+        console.log(error)
+      });
+    },
+    updateUser() {
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      })
+          .post('https://server.elfiro.com/api/v1/client/profile', {
+            name: document.getElementById('name').value,
+            user_name: document.getElementById('user_name').value,
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value,
+            // /^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/
+            description: '',
+            profile_image: null, //file
+            province: document.getElementById('province').value,
+            city: document.getElementById('city').value,
 
           })
-          .catch((error)=>{
-            console.log(error);
+          .then((response) => {
+            console.log(response)
+            // this.user = response.data.data.user;
+            // console.log(response);
+
           })
+          .catch((error) => {
+            console.log(error);
+          });
+
+      if (this.cards.length === 0) {
+        axios.create({
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': localStorage.getItem('token'),
+          }
+        })
+            .post('https://server.elfiro.com/api/v1/client/cards', {
+              card_number: document.getElementById('card_number').value,
+              card_sheba: document.getElementById('card_sheba').value
+            })
+            .then((response) => {
+              console.log(response)
+              // this.cards = response.data.data.cards;
+              // console.log('cards',this.cards)
+            })
+            .catch((error) => {
+              console.log(error)
+            });
+      } else {
+        axios.create({
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': localStorage.getItem('token'),
+          }
+        })
+            .post('https://server.elfiro.com/api/v1/client/cards/' + this.cards[0].id, {
+              // card_id: this.cards[0].id,
+              card_number: document.getElementById('card_number').value,
+              card_sheba: document.getElementById('card_sheba').value
+            })
+            .then((response) => {
+              console.log(response)
+              // this.cards = response.data.data.cards;
+              // console.log('cards',this.cards)
+            })
+            .catch((error) => {
+              console.log(error)
+            });
+      }
+    },
+    bankCodes() {
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      }).get('https://server.elfiro.com/api/v1/client/cards/details')
+          .then((response) => {
+            this.codes = response.data.data.details.banks;
+            // console.log(response);
+            console.log('codes', this.codes)
+
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    },
+    findBankName() {
+      if (document.getElementById('card_number').value.length === 6) {
+
+        let vl = document.getElementById('card_number').value
+        document.getElementById('bank').value =
+            this.codes[vl];
+      }
+      if (document.getElementById('card_number').value.length < 6) {
+        document.getElementById('bank').value = '';
+      }
+    },
+
+    getCities(){
+      let province = document.getElementById('province').value;
+      this.cities= this.allCities[province];
+      this.citiesKeys = Object.keys(this.cities)
     }
   }
 }

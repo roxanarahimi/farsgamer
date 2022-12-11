@@ -10,7 +10,7 @@
       <p class="text-primary text-center">آپلود عکس آگهی</p>
       <small>حد اکثر حجم تصویر آگهی <b>3 مگابایت</b> است</small><br>
       <label class="mt-3 rounded px-3" for="dzFile">بارگذاری</label><br>
-      <img v-if="image" :src="image_code" style="width: 100%; height: auto; margin-top: -100%"/>
+      <img v-if="image" :src="image_code" style="width: 80%; height: auto; margin-top: -80%"/>
       <input type="file" id="dzFile" @change="selectedFile($event)" class="dzFile">
       <input type="hidden" id="dzCode" :value="image_code">
     </div>

@@ -138,8 +138,9 @@
           </div>
 
           <div class="d-flex justify-content-between rounded fw-lighter text-black-50 my-2 py-3 px-2" style="background-color: whitesmoke">
-            <p class="mb-0">شماره حساب</p>
-            <p class="mb-0">123456789123456789</p>
+            <p v-if="cards.length" class="mb-0">شماره کارت</p>
+            <p v-if="cards.length" class="mb-0">{{ cards[0]}}</p>
+            <p v-else >لطفا کارت بانکی خود را ثبت کنید</p>
           </div>
 
 
@@ -166,6 +167,7 @@ export default {
     return {
       acc: {},
       detail: {},
+      cards: {}
     }
   },
   mounted() {
@@ -196,6 +198,20 @@ export default {
           .get('https://server.elfiro.com/api/v1/client/accounting/details')
           .then((response) => {
             this.detail = response.data.data.details;
+          }).catch((error) => {
+        console.log(error)
+      });
+      axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': localStorage.getItem('token'),
+        }
+      })
+          .get('https://server.elfiro.com/api/v1/client/cards')
+          .then((response) => {
+            this.cards = response.data.data.cards;
+            console.log('cards',this.cards)
           }).catch((error) => {
         console.log(error)
       });
