@@ -7,7 +7,7 @@
     </button>
   </router-link>
   <hr class="text-muted mb-5 mt-2">
-
+<!--  <i class="isax isax-square"></i>-->
   <div class="row px-3">
     <div class="col-12 p-0 m-0" v-if="true">
 
@@ -29,11 +29,11 @@
       <div>
         <form action="" class="mx-auto" style="max-width: 500px">
           <div class="row">
-            <!--            <div class="col-12 mb-3">-->
-            <!--              <label class="mb-2" for="bio">بایوگرافی</label>-->
+                        <div class="col-12 mb-3">
+                          <label class="mb-2" for="bio">بایوگرافی</label>
 
-            <!--              <textarea class="form-control" rows="8" id="bio" placeholder="لطفا در مورد خود بنویسید">{{ user.descriptions }}</textarea>-->
-            <!--            </div>-->
+                          <textarea class="form-control" rows="8" id="bio" placeholder="لطفا در مورد خود بنویسید">{{ user.descriptions }}</textarea>
+                        </div>
             <div class="col-lg-6 mb-3">
               <label class="mb-2" for="name">نام</label>
               <input type="text" class="form-control" id="name" :value=" user.name "/>
@@ -52,7 +52,7 @@
             </div>
             <div class="col-lg-6 mb-3">
               <label class="mb-2" for="password">رمز عبور</label>
-              <input type="password" class="form-control" id="password" :value=" user.password "/>
+              <input type="password"  style="border: none;    border-radius: 8px; background-color: #f5f5f5; height: 50px;" class="form-control" id="password" :value=" user.password "/>
             </div>
 
             <div class="col-lg-6 mb-3">
@@ -196,7 +196,7 @@ export default {
             email: document.getElementById('email').value,
             password: document.getElementById('password').value,
             // /^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/
-            description: '',
+            description: document.getElementById('description').value,
             profile_image: null, //file
             province: document.getElementById('province').value,
             city: document.getElementById('city').value,
@@ -274,9 +274,10 @@ export default {
           });
     },
     findBankName() {
-      if (document.getElementById('card_number').value.length === 6) {
+      if (document.getElementById('card_number').value.length >= 6) {
 
-        let vl = document.getElementById('card_number').value
+        let vl = document.getElementById('card_number').value.slice(0,6)
+
         document.getElementById('bank').value =
             this.codes[vl];
       }

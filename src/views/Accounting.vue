@@ -41,7 +41,7 @@
               </div>
             </div>
             <div class="col-lg-12 mb-3">
-              <btn-primary-shadow @click="withrawRequest" class="w-100 d-none d-lg-block" data-bs-toggle="modal"
+              <btn-primary-shadow  class="w-100 d-none d-lg-block" data-bs-toggle="modal"
                                   data-bs-target="#exampleModal">
                 برداشت وجه
               </btn-primary-shadow>
@@ -130,16 +130,16 @@
           </div>
           <div class="mt-2">
             <label for="amount">مبلغ مورد نظر را وارد کنید</label>
-            <input type="number" style="background-color: whitesmoke" @keyup="checkAmount" class="form-control border-0 py-3" name="" id="amount">
+            <input type="number" max="detail.removable_inventory" style="background-color: whitesmoke" @keyup="inputAmount" class="form-control border-0 py-3" name="" id="amount">
           </div>
           <div class="d-flex mt-2">
-            <input type="checkbox" @click="checkAmount" class="form-check ms-2" name="" id="allAmount">
+            <input type="checkbox" @click="checkAllAmount" class="form-check ms-2" name="" id="allAmount">
             <label for="allAmount"  >برداشت کل مبلغ قابل برداشت</label>
           </div>
 
           <div class="d-flex justify-content-between rounded fw-lighter text-black-50 my-2 py-3 px-2" style="background-color: whitesmoke">
             <p v-if="cards.length" class="mb-0">شماره کارت</p>
-            <p v-if="cards.length" class="mb-0">{{ cards[0]}}</p>
+            <p v-if="cards.length" class="mb-0">{{ cards[0].card_number}}</p>
             <p v-else >لطفا کارت بانکی خود را ثبت کنید</p>
           </div>
 
@@ -147,7 +147,7 @@
         </div>
 
         <div class="modal-footer border-0 justify-content-center">
-          <button disabled id="submitBtn" type="button" class="btn btn-primary btn-lg px-5" data-bs-dismiss="modal">ثبت</button>
+          <button disabled id="submitBtn" type="button" @click="withrawRequest" class="btn btn-primary btn-lg px-5" data-bs-dismiss="modal">ثبت</button>
           <button type="button" class="btn btn-light btn-lg px-5" data-bs-dismiss="modal">انصراف</button>
           <!--                <button type="button" class="btn btn-primary">Save changes</button>-->
         </div>
@@ -210,7 +210,7 @@ export default {
       })
           .get('https://server.elfiro.com/api/v1/client/cards')
           .then((response) => {
-            this.cards = response.data.data.cards;
+            this.cards = response.data.data.cards.records;
             console.log('cards',this.cards)
           }).catch((error) => {
         console.log(error)
@@ -225,11 +225,13 @@ export default {
         }
       })
           .post('https://server.elfiro.com/api/v1/client/accounting', {
-            price: 0,
-            card: 0
+            price: document.getElementById('amount').value,
+            card: this.cards[0].id
           })
           .then((response) => {
-            this.acc = response.data.data.requests.records;
+            console.log(response);
+            this.getData();
+            // this.acc = response.data.data.requests.records;
           }).catch((error) => {
         console.log(error)
       });
@@ -259,12 +261,31 @@ export default {
       }
     },
     checkAmount(){
-      ( (document.getElementById('amount').value !== '' && document.getElementById('amount').value > 10000) || document.getElementById('allAmount').checked)
+
+
+      ( (document.getElementById('amount').value !== ''
+              &&
+              document.getElementById('amount').value > 10000)
+          ||
+          document.getElementById('allAmount').checked)
           ?
           document.getElementById('submitBtn').removeAttribute('disabled')
           :
           document.getElementById('submitBtn').setAttribute('disabled', 'disabled');
 
+    },
+    inputAmount(){
+      if(document.getElementById('amount').value < this.detail.removable_inventory && document.getElementById('amount').value !== ''){
+        document.getElementById('allAmount').checked = false;
+      }
+      this.checkAmount();
+    },
+    checkAllAmount(){
+      if(document.getElementById('allAmount').checked){
+        document.getElementById('amount').value = ''
+        document.getElementById('amount').value = this.detail.removable_inventory
+      }
+      this.checkAmount();
 
     }
   }

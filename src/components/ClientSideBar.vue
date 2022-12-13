@@ -17,8 +17,8 @@
 
       <router-link to="/dashboard" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Dashboard'}">
         <div class="d-flex w-100 h-100 py-3 px-3 inner">
-          <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
-            <i class="bi bi-bar-chart-fill px-1 "></i>
+          <div class="small text-muted icon">
+            <img src="/iconsax/Svg/All/linear/chart-square.svg" class="text-primary" width="20" alt="">
           </div>
           <div>
             <p class="mb-0 px-2 text-muted">داشبورد</p>
@@ -28,8 +28,9 @@
       </router-link>
       <router-link to="/ads" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Advertisements'}">
         <div class="d-flex w-100 h-100 py-3 px-3 inner">
-          <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
-            <i class="bi bi-bar-chart-fill px-1 "></i>
+          <div class="small text-muted icon">
+            <img src="/iconsax/Svg/All/linear/briefcase.svg" class="text-primary" width="20" alt="">
+
           </div>
           <div>
             <p class="mb-0 px-2 text-muted">آگهی ها</p>
@@ -39,8 +40,8 @@
       </router-link>
       <router-link to="/dealings" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Dealings'}">
         <div class="d-flex w-100 h-100 py-3 px-3 inner">
-          <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
-            <i class="bi bi-bar-chart-fill px-1 "></i>
+          <div class="small  text-muted icon">
+            <img src="/iconsax/Svg/All/linear/convert-3d-cube.svg" class="text-primary" width="20" alt="">
           </div>
           <div>
             <p class="mb-0 px-2 text-muted">معاملات</p>
@@ -50,8 +51,8 @@
       </router-link>
       <router-link to="/accounting" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Accounting'}">
         <div class="d-flex w-100 h-100 py-3 px-3 inner">
-          <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
-            <i class="bi bi-bar-chart-fill px-1 "></i>
+          <div class="small  text-muted icon">
+            <img src="/iconsax/Svg/All/linear/wallet.svg" class="text-primary" width="20" alt="">
           </div>
           <div>
             <p class="mb-0 px-2 text-muted">حسابداری</p>
@@ -61,8 +62,8 @@
       </router-link>
       <router-link to="/profile" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Profile'}">
         <div class="d-flex w-100 h-100 py-3 px-3 inner">
-          <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
-            <i class="bi bi-bar-chart-fill px-1 "></i>
+          <div class="small  text-muted icon">
+            <img src="/iconsax/Svg/All/linear/user-square.svg" class="text-primary" width="20" alt="">
           </div>
           <div>
             <p class="mb-0 px-2 text-muted">پروفایل</p>
@@ -72,8 +73,8 @@
       </router-link>
       <router-link to="/support" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Support'}">
         <div class="d-flex w-100 h-100 py-3 px-3 inner">
-          <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
-            <i class="bi bi-bar-chart-fill px-1 "></i>
+          <div class="small  text-muted icon">
+            <img src="/iconsax/Svg/All/linear/messages-2.svg" class="text-primary" width="20" alt="">
           </div>
           <div>
             <p class="mb-0 px-2 text-muted">پشتیبانی</p>
@@ -86,7 +87,7 @@
       <div class=" mx-1 rounded " style="">
         <div class="d-flex w-100 h-100 py-3 px-3">
           <div class="small text-muted">
-            <i class="bi bi-box-arrow-right px-1" style="font-weight: 600; font-size: 22px"></i>
+            <img src="/iconsax/Svg/All/linear/logout.svg" class="text-primary" width="20" alt="">
           </div>
           <div>
             <p @click="this.$parent.logOut" class="mb-0 px-2 text-muted cursor">خروج از حساب</p>
@@ -120,7 +121,7 @@
 
           <router-link @click="closeOffCanvas" to="/dashboard" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Dashboard'}">
             <div class="d-flex w-100 h-100 py-3 px-3 inner">
-              <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
+              <div class="small  text-muted icon">
                 <i class="bi bi-bar-chart-fill px-1 "></i>
               </div>
               <div>
@@ -131,7 +132,7 @@
           </router-link>
           <router-link @click="closeOffCanvas" to="/ads" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Advertisements'}">
             <div class="d-flex w-100 h-100 py-3 px-3 inner">
-              <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
+              <div class="small  text-muted icon">
                 <i class="bi bi-bar-chart-fill px-1 "></i>
               </div>
               <div>
@@ -142,7 +143,7 @@
           </router-link>
           <router-link @click="closeOffCanvas" to="/dealings" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Dealings'}">
             <div class="d-flex w-100 h-100 py-3 px-3 inner">
-              <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
+              <div class="small  text-muted icon">
                 <i class="bi bi-bar-chart-fill px-1 "></i>
               </div>
               <div>
@@ -153,7 +154,7 @@
           </router-link>
           <router-link @click="closeOffCanvas" to="/accounting" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Accounting'}">
             <div class="d-flex w-100 h-100 py-3 px-3 inner">
-              <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
+              <div class="small  text-muted icon">
                 <i class="bi bi-bar-chart-fill px-1 "></i>
               </div>
               <div>
@@ -164,7 +165,7 @@
           </router-link>
           <router-link @click="closeOffCanvas" to="/profile" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Profile'}">
             <div class="d-flex w-100 h-100 py-3 px-3 inner">
-              <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
+              <div class="small  text-muted icon">
                 <i class="bi bi-bar-chart-fill px-1 "></i>
               </div>
               <div>
@@ -175,7 +176,7 @@
           </router-link>
           <router-link @click="closeOffCanvas" to="/support" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Support'}">
             <div class="d-flex w-100 h-100 py-3 px-3 inner">
-              <div class="small border border-2 border-secondary rounded rounded-3 text-muted icon">
+              <div class="small  text-muted icon">
                 <i class="bi bi-bar-chart-fill px-1 "></i>
               </div>
               <div>

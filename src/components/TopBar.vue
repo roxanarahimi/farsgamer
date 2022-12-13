@@ -12,26 +12,31 @@
       <span class="my-2 px-2 pe-1 pe-lg-4 ps-lg-4 border-end me-1 me-lg-4 float-start">09032313681</span>
       <div>
       <span class="my-2 mx-1 px-2 text-primary  cursor position-relative"
-            style=" line-height:37px;width: 37px; height: 37px; background-color: #eeeeee; border-radius: 5px; text-align: center; "><i
-          class="bi bi-bookmark"></i>
+            style=" line-height:37px;width: 37px; height: 37px; background-color: #eeeeee; border-radius: 5px; text-align: center; ">
+               <img src="/iconsax/Svg/All/linear/bookmark-2.svg" class="text-primary" width="20" alt="">
+
          <span class="position-absolute translate-middle bg-danger border border-light rounded-circle"
                style="top:5px;right:0; padding: 2.5px">
           <span class="visually-hidden">New alerts</span>
          </span>
         </span>
        <router-link to="/chat" class="my-2 mx-1 px-2 text-primary cursor position-relative d-none d-lg-inline-block"
-                           style=" line-height:37px;width: 37px; height: 37px; background-color: #eeeeee; border-radius: 5px; text-align: center; "><i
-         class="bi bi-chat-dots"></i></router-link>
+                           style=" line-height:37px;width: 37px; height: 37px; background-color: #eeeeee; border-radius: 5px; text-align: center; ">
+         <img src="/iconsax/Svg/All/linear/message-2.svg" class="text-primary" width="20" alt="">
+
+       </router-link>
        <span class="my-2 mx-1 px-2 text-primary cursor position-relative"
              style=" line-height:37px;width: 37px; height: 37px; background-color: #eeeeee; border-radius: 5px; text-align: center; ">
-<i class="isax isax-square"></i>
+<img src="/iconsax/Svg/All/linear/notification-bing.svg" class="text-primary" width="20px" alt="">
 
          <span class="position-absolute translate-middle bg-danger border border-light rounded-circle" style="top:5px;right:0; padding: 2.5px">
           <span class="visually-hidden">New alerts</span>
          </span>
         </span>
        <span class="my-2 mx-1 px-2 text-primary cursor position-relative d-none d-lg-inline-block"
-             style=" line-height:37px;width: 37px; height: 37px; background-color: #eeeeee; border-radius: 5px; text-align: center; "><i class="bi bi-person"></i></span>
+             style=" line-height:37px;width: 37px; height: 37px; background-color: #eeeeee; border-radius: 5px; text-align: center; ">
+         <img src="/iconsax/Svg/All/linear/user.svg" class="text-primary" width="20px" alt="">
+       </span>
       </div>
     </div>
 <!--    <hr class="text-muted  mx-3 mx-lg-5 mb-0">-->
