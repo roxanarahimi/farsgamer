@@ -41,6 +41,11 @@ const routes = [
         name: 'Support',
         component: () => import(/* webpackChunkName: "support" */ '../views/Support.vue')
     },
+    {
+        path: '/notifications',
+        name: 'Notifications',
+        component: () => import(/* webpackChunkName: "notifications" */ '../views/Notifications.vue')
+    },
 
     {
         path: '/profile',

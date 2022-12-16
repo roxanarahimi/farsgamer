@@ -27,7 +27,7 @@
        </router-link>
        <span class="my-2 mx-1 px-2 text-primary cursor position-relative"
              style=" line-height:37px;width: 37px; height: 37px; background-color: #eeeeee; border-radius: 5px; text-align: center; ">
-<img src="/iconsax/Svg/All/linear/notification-bing.svg" class="text-primary" width="20px" alt="">
+<img src="/iconsax/Svg/All/linear/notification-bing.svg" class="text-primary" width="20" alt="">
 
          <span class="position-absolute translate-middle bg-danger border border-light rounded-circle" style="top:5px;right:0; padding: 2.5px">
           <span class="visually-hidden">New alerts</span>
@@ -35,7 +35,7 @@
         </span>
        <span class="my-2 mx-1 px-2 text-primary cursor position-relative d-none d-lg-inline-block"
              style=" line-height:37px;width: 37px; height: 37px; background-color: #eeeeee; border-radius: 5px; text-align: center; ">
-         <img src="/iconsax/Svg/All/linear/user.svg" class="text-primary" width="20px" alt="">
+         <img src="/iconsax/Svg/All/linear/user.svg" class="text-primary" width="20" alt="">
        </span>
       </div>
     </div>
@@ -48,7 +48,8 @@
 import SideBar from "@/components/ClientSideBar";
 export default {
   name: "TopBar",
-  components: {SideBar}
+  components: {SideBar},
+
 }
 </script>
 
@@ -69,4 +70,7 @@ export default {
   box-shadow: 0 4px 2px -2px darkgray;
 
 }
+/*path{*/
+/*  stroke: #7007FA !important;*/
+/*}*/
 </style>

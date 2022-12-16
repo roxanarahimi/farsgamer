@@ -82,6 +82,17 @@
 
         </div>
       </router-link>
+      <router-link to="/notifications" class=" mx-1 rounded " :class="{'sidebar-active':this.$route.name == 'Notifications'}">
+        <div class="d-flex w-100 h-100 py-3 px-3 inner">
+          <div class="small  text-muted icon">
+            <img src="/iconsax/Svg/All/linear/notification-bing.svg" class="text-primary" width="20" alt="">
+          </div>
+          <div>
+            <p class="mb-0 px-2 text-muted">اعلانات</p>
+          </div>
+
+        </div>
+      </router-link>
 
       <hr class="text-muted">
       <div class=" mx-1 rounded " style="">
