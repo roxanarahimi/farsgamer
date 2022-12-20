@@ -35,6 +35,7 @@
             </div>
             <div class="col-lg-10 col-xxl-8 mb-4 text-center">
               <dropzone :img="img"/>
+              <dropzone-multi :imgs="imgs"/>
             </div>
             <div class="col-lg-10 col-xxl-8 mb-4 text-center">
               <label for="content">توضیحات</label>
@@ -65,18 +66,20 @@
 <script>
 import BtnPrimaryShadow from "@/components/BtnPrimaryShadow";
 import Dropzone from "@/components/dropZone";
+import DropzoneMulti from "@/components/dropZoneMulti";
 import {toArray} from "core-js/internals/async-iterator-iteration";
 
 export default {
   name: "CreateAd",
-  components: {Dropzone, BtnPrimaryShadow},
+  components: {Dropzone,DropzoneMulti, BtnPrimaryShadow},
   data() {
     return {
       categories: [],
       subCategories: [],
       subCategory: {},
       level: 1,
-      img: null
+      img: null,
+      imgs: null
          }
   },
   mounted() {

@@ -10,20 +10,14 @@
       <p class="text-primary text-center">آپلود عکس آگهی</p>
       <small>حد اکثر حجم تصویر آگهی <b>3 مگابایت</b> است</small><br>
       <label class="mt-3 rounded px-3" for="dzFile">بارگذاری</label><br>
-      <img v-if="image" :src="image_code" style="width: 80%; height: auto; margin-top: -80%"/>
       <input type="file" id="dzFile" @change="selectedFile($event)" class="dzFile">
       <input type="hidden" id="dzCode" :value="image_code">
     </div>
   </div>
-  <div class="row">
-    <!--    <div v-for="item in images" class="col-4 mb-2  text-center">-->
-    <!--      <div class="rounded bg-light p-2 pb-3 w-100" style="">-->
-    <!--        <img id="img" :src="item" style="width: 100%; height: auto" alt="">-->
+  <div class="text-center">
+    <img v-if="image" :src="image_code" style="width: 100%; height: auto;"/>
+    <div v-if="image"  class="text-center mt-2 mb-3"><button class="btn btn-danger btn-sm py-1 px-3 ">حذف</button></div>
 
-    <!--      </div>-->
-    <!--      <label class="mt-3 rounded px-3 mx-auto" for="dzFile" style="margin-top: -100px !important; z-index: 1000">آپلود</label><br>-->
-
-    <!--    </div>-->
   </div>
 </template>
 
