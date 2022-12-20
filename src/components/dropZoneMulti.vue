@@ -25,8 +25,8 @@
     <!--    </div>-->
     <div class=" row justify-content-between text-center ">
       <div class="text-center col-4 mb-3" style="width: 140px; height: 140px" v-for="(code, index) in codes" v-if="images" :key="index" :data-index="index">
-        <img  :src="code" class="img-fluid" />
-        <div class="text-center "><button class="btn btn-danger btn-sm py-1 px-3 ">حذف</button></div>
+        <img  :src="code" class="img-fluid rounded rounded-4" />
+        <div class="text-center "><button @click.prevent="deleteImage(index)" class="btn btn-danger btn-sm py-1 px-3 ">حذف</button></div>
       </div>
     </div>
     <!--    <input type="hidden" id="dzCode" :value="image_code">-->
@@ -108,8 +108,12 @@ export default {
       }
       reader.readAsDataURL(file);
     }
+    const deleteImage = (i) => {
+      images.value.splice(i, 1)
+      codes.value.splice(i, 1)
+    }
     return {
-      active, toggleActive, dropzoneFile, drop, selectedFile, images, image, image_code, codes
+      active, toggleActive, dropzoneFile, drop, selectedFile, images, image, image_code, codes, deleteImage
     }
   }
 }

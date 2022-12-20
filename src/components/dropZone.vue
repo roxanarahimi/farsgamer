@@ -15,8 +15,8 @@
     </div>
   </div>
   <div class="text-center">
-    <img v-if="image" :src="image_code" style="width: 100%; height: auto;"/>
-    <div v-if="image"  class="text-center mt-2 mb-3"><button class="btn btn-danger btn-sm py-1 px-3 ">حذف</button></div>
+    <img class=" rounded rounded-4" v-if="image" :src="image_code" style="width: 100%; height: auto;"/>
+    <div v-if="image" @click.prevent="deleteMainImage" class="text-center mt-2 mb-3"><button class="btn btn-danger btn-sm py-1 px-3 ">حذف</button></div>
 
   </div>
 </template>
@@ -31,22 +31,7 @@ export default {
   components: {BtnPrimaryShadow, CreateAd},
   props:['img'],
   setup(_,props) {
-    // function onDrop(acceptFiles, rejectReasons) {
-    //   console.log(acceptFiles)
-    //   console.log(rejectReasons)
-    // }
-    //
-    // const { getRootProps, getInputProps } = useDropzone({ onDrop })
-    //
-    // return {
-    //   getRootProps,
-    //   getInputProps,
-    //
-    // }
-    //
-    // return{
-    //
-    // }
+
     const image = ref();
     const image_code = ref('');
     const images = ref([]);
@@ -57,19 +42,13 @@ export default {
     };
     const drop = (e) => {
       toggleActive();
-      // dropzoneFile.value = e.dataTransfer;
-      // console.log(dropzoneFile.value.files);
-
       var file = e.dataTransfer.files[0];
       var reader = new FileReader();
       reader.onloadend = function () {
-        // images.value.push(reader.result);
         image_code.value = reader.result;
         image.value = file;
         CreateAd.data().img = image.value;
 
-        // document.querySelector('#dzFile').files=[];
-        // document.querySelector('#dzFile').files.push(image.value);
       }
       reader.readAsDataURL(file);
     }
@@ -90,8 +69,11 @@ export default {
       }
       reader.readAsDataURL(file);
     }
+    const deleteMainImage = ()=> {
+      image.value = null;
+    }
     return {
-      active, toggleActive, dropzoneFile, drop, selectedFile, images, image, image_code
+      active, toggleActive, dropzoneFile, drop, selectedFile, images, image, image_code, deleteMainImage
     }
   }
 }
