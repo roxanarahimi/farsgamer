@@ -68,6 +68,8 @@ import BtnPrimaryShadow from "@/components/BtnPrimaryShadow";
 import Dropzone from "@/components/dropZone";
 import DropzoneMulti from "@/components/dropZoneMulti";
 import {toArray} from "core-js/internals/async-iterator-iteration";
+import dropZone from "@/components/dropZone";
+import dropZoneMulti from "@/components/dropZoneMulti";
 
 export default {
   name: "CreateAd",
@@ -79,7 +81,7 @@ export default {
       subCategory: {},
       level: 1,
       img: null,
-      imgs: null
+      imgs: []
          }
   },
   mounted() {
@@ -167,17 +169,46 @@ export default {
         }
       },
     submit() {
+      console.log(this.imgs)
       this.img = document.querySelector('#dzFile').files[0]
-      //
-      //
-      console.log(this.img);
+      this.imgs = JSON.parse(localStorage.getItem('images'))
+      let gallery = [];
+      let gallery_codes = [];
+      document.querySelectorAll('input[name=gallery]').forEach((el)=>{
+        gallery_codes.push(el.getAttribute('value'))
+      });
+      console.log('gal',gallery_codes)
+      let i = 0;
+      gallery_codes.forEach((code)=>{
+
+        function dataURLtoFile(dataurl, filename) {
+
+          var arr = dataurl.split(','),
+              mime = arr[0].match(/:(.*?);/)[1],
+              bstr = atob(arr[1]),
+              n = bstr.length,
+              u8arr = new Uint8Array(n);
+
+          while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+          }
+
+          return new File([u8arr], filename, {type:mime});
+        }
+        gallery.push(dataURLtoFile(code,'gallery_image_'+i+'.jpg'))
+        i++;
+      })
+      // console.log(document.querySelector('[name=gallery]').files[0])
+
+      console.log('ggggggggggg',gallery)
+      console.log()
       const formData = new FormData();
       formData.append("category_id", 1);
-      formData.append("image", document.querySelector('#dzFile').files[0]);
+      formData.append("image", this.img);
       formData.append("name", document.querySelector('#name').value);
       formData.append("content", document.querySelector('#content').value);
       formData.append("price", document.querySelector('#price').value);
-      // formData.append("gallery", []);
+      formData.append("gallery", gallery);
       // formData.append("platforms", ['android']);
       // formData.append("parameters", []);
 

@@ -94,14 +94,23 @@
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+<!--                <h5 class="modal-title">Modal title</h5>-->
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <p>Modal body text goes here.</p>
+                <p>استفاده از آواتار پیشفرض</p>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <div class="row px-3 ">
+                <div class="col-3"><img class="rounded rounded-3 img-fluid" src="img/7.jpg" alt=""></div>
+                <div class="col-3"><img class="rounded rounded-3 img-fluid" src="img/7.jpg" alt=""></div>
+                <div class="col-3"><img class="rounded rounded-3 img-fluid" src="img/7.jpg" alt=""></div>
+                <div class="col-3"><img class="rounded rounded-3 img-fluid" src="img/7.jpg" alt=""></div>
+              </div>
+              <div class="p-3">
+                <drop-zone-2 />
+              </div>
+              <div class="modal-footer border-0 text-center justify-content-center">
+                <button type="button" class="btn btn-light btn-lg px-5 py-3" data-bs-dismiss="modal">ثبت</button>
                 <!--                <button type="button" class="btn btn-primary">Save changes</button>-->
               </div>
             </div>
@@ -115,8 +124,10 @@
 </template>
 
 <script>
+import DropZone2 from "@/components/dropZone2";
 export default {
   name: "Profile",
+  components: {DropZone2},
   data() {
 
     return {

@@ -15,27 +15,20 @@
 
   </div>
   <div class="">
-    <!--    <div v-for="item in images" class="col-4 mb-2  text-center">-->
-    <!--      <div class="rounded bg-light p-2 pb-3 w-100" style="">-->
-    <!--        <img id="img" :src="item" style="width: 100%; height: auto" alt="">-->
 
-    <!--      </div>-->
-    <!--      <label class="mt-3 rounded px-3 mx-auto" for="dzFile" style="margin-top: -100px !important; z-index: 1000">آپلود</label><br>-->
-
-    <!--    </div>-->
     <div class=" row justify-content-between text-center ">
       <div class="text-center col-4 mb-3" style="width: 140px; height: 140px" v-for="(code, index) in codes" v-if="images" :key="index" :data-index="index">
         <img  :src="code" class="img-fluid rounded rounded-4" />
+        <input type="hidden" name="gallery" :value="code">
+
         <div class="text-center "><button @click.prevent="deleteImage(index)" class="btn btn-danger btn-sm py-1 px-3 ">حذف</button></div>
       </div>
     </div>
-    <!--    <input type="hidden" id="dzCode" :value="image_code">-->
 
   </div>
 </template>
 
 <script>
-import {useDropzone} from 'vue3-dropzone'
 import {ref} from "vue";
 import BtnPrimaryShadow from "@/components/BtnPrimaryShadow";
 import CreateAd from "@/views/CreateAd";
@@ -44,8 +37,6 @@ export default {
   components: {BtnPrimaryShadow, CreateAd},
   props:['img'],
   setup(_,props) {
-    const image = ref();
-    const image_code = ref('');
     const images = ref([]);
     const codes = ref([]);
     const dropzoneFile = ref('');
@@ -56,53 +47,35 @@ export default {
     const drop = (e) => {
       toggleActive();
       dropzoneFile.value = e.dataTransfer;
-      // console.log(dropzoneFile.value.files);
 
       Object.values(dropzoneFile.value.files).forEach((el)=>{
         images.value.push(el);
       })
-      // console.log(images.value);
       Object.values(e.dataTransfer.files).forEach((filee)=>{
-        // console.log('bbb',filee)
         var reader2 = new FileReader()
         return new Promise(function (resolve, reject) {
           reader2.onload = function (event) {
             resolve(event.target.result)
-            // console.log('aaa',reader2.result)
             codes.value.push(reader2.result);
           }
           reader2.readAsDataURL(filee)
         })
       })
-      // console.log('images',images.value)
-      // console.log('codes',codes.value)
+      CreateAd.data().imgs = images.value;
 
-      // var file = e.dataTransfer.files[0];
-      // var reader = new FileReader();
-      // reader.onloadend = function () {
-      //   // images.value.push(reader.result);
-      //   image_code.value = reader.result;
-      //   // console.log(reader.result)
-      //   image.value = file;
-        CreateAd.data().imgs = images.value;
-
-        // document.querySelector('#dzFile').files=[];
-        // document.querySelector('#dzFile').files.push(image.value);
+      localStorage.setItem('images',JSON.stringify(images.value))
       }
-      // reader.readAsDataURL(file);
-    // }
 
 
     const selectedFile = (e) => {
-      // dropzoneFile.value = document.querySelector('.dzFile').files[0]
 
       var file = document.querySelector('.dzFileMulti').files[0];
       var reader = new FileReader();
       reader.onloadend = function () {
-        // images.value.push(reader.result);
         codes.value.push(reader.result);
         images.value.push(file);
         CreateAd.data().imgs = images.value
+        localStorage.setItem('images',JSON.stringify(images.value))
 
 
       }
@@ -113,7 +86,7 @@ export default {
       codes.value.splice(i, 1)
     }
     return {
-      active, toggleActive, dropzoneFile, drop, selectedFile, images, image, image_code, codes, deleteImage
+      active, toggleActive, dropzoneFile, drop, selectedFile, images, codes, deleteImage
     }
   }
 }

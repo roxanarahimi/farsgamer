@@ -1,23 +1,20 @@
 <template>
-  <div class="bg-light p-4 pb-5 rounded mb-3">
+  <div class="bg-light p-4 pb-5 rounded mb-3" >
     <div @dragenter.prevent="toggleActive"
          @dragleave.prevent="toggleActive"
          @dragover.prevent
          @drop.prevent="drop($event)"
          :class="{'active-dropzone' : active}"
-         class="drop-zone">
+         class="drop-zone rounded" style="border: 3px dashed gray ">
       <span class="mt-5 pt-5 text-primary"><i class="bi bi-cloud-upload"></i></span><br>
-      <p class="text-primary text-center">آپلود عکس آگهی</p>
-      <small>حد اکثر حجم تصویر آگهی <b>3 مگابایت</b> است</small><br>
-      <label class="mt-3 rounded px-3" for="dzFile">بارگذاری</label><br>
+      <p class="text-primary text-center">آپلود عکس آواتار</p>
+      <small>حد اکثر حجم تصویر آواتار <b>3 مگابایت</b> است</small><br>
+      <label class="mt-5 rounded px-3 btn btn-outline-primary" for="dzFile">انتخاب فایل</label><br>
+      <img class=" rounded rounded-4" v-if="image" :src="image_code" style="width: 60%; height: auto;margin-top: -80%"/>
+
       <input type="file" id="dzFile" @change="selectedFile($event)" class="dzFile">
       <input type="hidden" id="dzCode" :value="image_code">
     </div>
-  </div>
-  <div class="text-center">
-    <img class=" rounded rounded-4" v-if="image" :src="image_code" style="width: 100%; height: auto;"/>
-    <div v-if="image" @click.prevent="deleteMainImage" class="text-center mt-2 mb-3"><button class="btn btn-danger btn-sm py-1 px-3 ">حذف</button></div>
-
   </div>
 </template>
 
@@ -79,7 +76,7 @@ export default {
 <style scoped>
 .drop-zone {
   width: 100%;
-  height: 250px;
+  height: 300px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
