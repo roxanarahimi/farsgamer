@@ -30,9 +30,9 @@
         <form action="" class="mx-auto" style="max-width: 500px">
           <div class="row">
                         <div class="col-12 mb-3">
-                          <label class="mb-2" for="bio">بایوگرافی</label>
+                          <label class="mb-2" for="description">بایوگرافی</label>
 
-                          <textarea class="form-control" rows="8" id="bio" placeholder="لطفا در مورد خود بنویسید">{{ user.descriptions }}</textarea>
+                          <textarea class="form-control"  rows="8" id="description" placeholder="لطفا در مورد خود بنویسید">{{ user.description }}</textarea>
                         </div>
             <div class="col-lg-6 mb-3">
               <label class="mb-2" for="name">نام</label>
@@ -70,20 +70,20 @@
             </div>
             <div class="col-lg-6 mb-3">
               <label class="mb-2" for="card_number">شماره کارت</label>
-              <input @keyup="findBankName" type="text" class="form-control" id="card_number"/>
+              <input @keyup="findBankName" type="text" class="form-control" id="card_number" :value="cards[0]?.card_number"/>
             </div>
             <div class="col-lg-6 mb-3">
               <label class="mb-2" for="bank">نام بانک</label>
-              <input disabled type="text" class="form-control" id="bank"/>
+              <input disabled type="text" class="form-control" id="bank" />
             </div>
             <div class="col-lg-12 mb-3">
               <label class="mb-2" for="card_sheba">شماره شبا</label>
-              <input type="text" class="form-control" id="card_sheba"/>
+              <input type="text" class="form-control" id="card_sheba" :value="cards[0]?.card_sheba"/>
             </div>
 
 
             <div class="col-lg-12 mb-3">
-              <input type="submit" @click.prevent="updateUser" class="btn btn-outline-primary" value="ویرایش"/>
+              <input type="submit" @click="updateUser" class="btn btn-outline-primary" value="ویرایش"/>
             </div>
 
 
@@ -159,6 +159,7 @@ export default {
           .get('https://server.elfiro.com/api/v1/client/profile')
           .then((response) => {
             this.user = response.data.data.user;
+            console.log(response.data.data.user);
             console.log(response.data.data.details.provinces);
 
             this.provinces = response.data.data.details.provinces;
@@ -188,12 +189,26 @@ export default {
           .get('https://server.elfiro.com/api/v1/client/cards')
           .then((response) => {
             this.cards = response.data.data.cards.records;
-            console.log('cards', this.cards.length)
-          }).catch((error) => {
+          })
+          .then(()=>{
+        this.findBankName();
+
+      }).catch((error) => {
         console.log(error)
       });
     },
     updateUser() {
+
+      const formData = new FormData();
+      formData.append("profile_image", document.querySelector('#dzFile').files[0]);
+      formData.append("name", document.getElementById('name').value);
+      formData.append("user_name", document.getElementById('user_name').value);
+      formData.append("email", document.getElementById('email').value);
+      formData.append("password", document.getElementById('password').value);
+      formData.append("description", document.getElementById('description').value);
+      formData.append("province", document.getElementById('province').value);
+      formData.append("city", document.getElementById('city').value);
+
       axios.create({
         headers: {
           'Content-Type': 'application/json',
@@ -201,18 +216,7 @@ export default {
           'Authorization': 'Bearer ' + localStorage.getItem('token'),
         }
       })
-          .post('https://server.elfiro.com/api/v1/client/profile', {
-            name: document.getElementById('name').value,
-            user_name: document.getElementById('user_name').value,
-            email: document.getElementById('email').value,
-            password: document.getElementById('password').value,
-            // /^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/
-            description: document.getElementById('description').value,
-            profile_image: null, //file
-            province: document.getElementById('province').value,
-            city: document.getElementById('city').value,
-
-          })
+          .post('https://server.elfiro.com/api/v1/client/profile', formData)
           .then((response) => {
             console.log(response)
             // this.user = response.data.data.user;

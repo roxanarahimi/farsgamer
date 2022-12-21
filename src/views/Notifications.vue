@@ -54,58 +54,7 @@ export default {
       })
           .get('https://server.elfiro.com/api/v1/client/dashboard')
           .then((response) => {
-            // this.notifications = response.data.data.notification.records;
-            this.notifications = [{
-              "subject": "معاملات",
-              "content": "sadsad",
-              "type": "private",
-              "date": "1 هفته پیش"
-            }, {
-              "subject": "معاملات",
-              "content": "ssssss",
-              "type": "private",
-              "date": "1 هفته پیش"
-            }, {
-              "subject": "امنیتی",
-              "content": "123",
-              "type": "private",
-              "date": "1 هفته پیش"
-            }, {
-              "subject": "حساب های بانکی",
-              "content": "asdasdsad",
-              "type": "private",
-              "date": "1 هفته پیش"
-            }, {
-              "subject": "حساب های بانکی",
-              "content": "asdad",
-              "type": "private",
-              "date": "1 هفته پیش"
-            }, {
-              "subject": "ادرس",
-              "content": "admin سلام\nIran ",
-              "type": "private",
-              "date": "2 هفته پیش"
-            }, {
-              "subject": "ادرس",
-              "content": "admin سلام\nIran ",
-              "type": "private",
-              "date": "2 هفته پیش"
-            }, {
-              "subject": "ادرس",
-              "content": "admin سلام\n",
-              "type": "private",
-              "date": "2 هفته پیش"
-            }, {
-              "subject": "ادرس",
-              "content": "{user_user_name} سلام\n",
-              "type": "private",
-              "date": "2 هفته پیش"
-            }, {
-              "subject": "ادرس",
-              "content": "admin سلام\n",
-              "type": "private",
-              "date": "2 هفته پیش"
-            }, {"subject": "ادرس", "content": "{user_user_name} سلام\n", "type": "private", "date": "2 هفته پیش"}];
+            this.notifications = response.data.data.notification.records;
             console.log('nn', this.notifications)
           }).catch((error) => {
         console.log(error)

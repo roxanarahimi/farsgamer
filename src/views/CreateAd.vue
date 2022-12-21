@@ -222,21 +222,6 @@ export default {
       })
           .post('https://server.elfiro.com/api/v1/client/orders',
           formData
-              //     {
-          //   // formData,
-          //   category_id: document.querySelector('#categories').value,
-          //   name: document.querySelector('#name').value,
-          //   content: document.querySelector('#content').value,
-          //   price: document.querySelector('#price').value,
-          //   // // image: this.getBase64(document.querySelector('#dzFile')),
-          //   image: formData,
-          //   // // image: document.querySelector('#dzFile'),
-          //   gallery: [],
-          //   platforms: [],
-          //   parameters: [], // id,value
-          //   // // province: '',
-          //   // // city: '',
-          // }
           )
 
           .then((response) => {
