@@ -160,8 +160,10 @@ export default {
           .then((response) => {
             this.user = response.data.data.user;
             console.log(response.data.data.user);
-            console.log(response.data.data.details.provinces);
+            localStorage.setItem('user', JSON.stringify(response.data.data.user))
 
+            console.log(this.user)
+            console.log(response.data.data.details.provinces);
             this.provinces = response.data.data.details.provinces;
             this.provincesKeys = Object.keys(this.provinces);
             this.allCities = response.data.data.details.cities;
@@ -174,6 +176,9 @@ export default {
 
               console.log(this.cities, this.citiesKeys)
             }
+          })
+          .then(()=>{
+
           })
           .catch((error) => {
             console.log(error);
@@ -222,7 +227,9 @@ export default {
             // this.user = response.data.data.user;
             // console.log(response);
 
-          })
+          }).then(()=>{
+            this.getUser();
+      })
           .catch((error) => {
             console.log(error);
           });

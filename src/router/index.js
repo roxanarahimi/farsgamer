@@ -42,6 +42,11 @@ const routes = [
         component: () => import(/* webpackChunkName: "support" */ '../views/Support.vue')
     },
     {
+        path: '/send/ticket',
+        name: 'Ticket',
+        component: () => import(/* webpackChunkName: "Ticket" */ '../views/SupportReq.vue')
+    },
+    {
         path: '/notifications',
         name: 'Notifications',
         component: () => import(/* webpackChunkName: "notifications" */ '../views/Notifications.vue')
@@ -81,6 +86,21 @@ const routes = [
         name: 'Auth2',
         component: () => import(/* webpackChunkName: "auth2" */ '../views/Auth2.vue')
     },
+{
+        path: '/contact',
+        name: 'Contact',
+        component: () => import(/* webpackChunkName: "contact" */ '../views/Contact.vue')
+    },
+{
+        path: '/laws',
+        name: 'Laws',
+        component: () => import(/* webpackChunkName: "laws" */ '../views/Laws.vue')
+    },
+{
+        path: '/faq',
+        name: 'Faq',
+        component: () => import(/* webpackChunkName: "faq" */ '../views/Faq.vue')
+    }
 
 
 ]

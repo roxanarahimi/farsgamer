@@ -1,7 +1,10 @@
 <template>
   <div class="d-flex justify-content-between">
     <h3 class=" fw-bold mb-0" style="line-height: 50px">پشتیبانی</h3>
-
+    <router-link to="/send/ticket" class="btn btn-outline-primary mx-2 py-3 mt-4 mb-3">
+      <i class="bi bi-shield-check"></i>
+      درخواست پشتیبانی
+    </router-link>
   </div>
   <hr class="text-muted mb-5 mt-2">
 
@@ -9,69 +12,30 @@
     <div class="col-12 p-0 m-0" v-if="true">
 
       <div>
-        <form action="" class="mx-auto" style="max-width: 500px">
-          <div class="row">
-            <div class="col-lg-12 mb-3">
-              <label class="mb-2" for="name">موضوع پیام خود را انتخاب کنید</label>
 
-              <select class="form-select">
-                <option>salam</option>
-              </select>
-            </div>
-            <div class="col-lg-12 mb-3">
-              <label class="mb-2" for="lastName">عنوان پیام خود را وارد کنید</label>
-              <input type="text" class="form-control" id="lastName"  value=""/>
-            </div>
-            <div class="col-12 mb-3">
-              <label class="mb-2" for="bio">درخواست پشتیبانی خود را بنویسید</label>
-
-              <textarea class="form-control" rows="8" id="bio" placeholder="پیام خود را وارد نمایید"></textarea>
-            </div>
-
-            <div class="col-lg-12 mb-3">
-              <input type="submit" class="btn btn-outline-primary" value="ارسال پیام"/>
-            </div>
-
-            <div class="col-12 mb-3" >
-              <div class=" bg-light border border-primary rounded">
-                <p class="mb-2 p-3">قبل از ارسال درخواست به نکات زیر توجه کنید</p>
-
-                <ul style="list-style: decimal" class=" px-5">
-
-                  <li>نکته</li>
-                  <li>نکته</li>
-                  <li>نکته</li>
-                  <li>نکته</li>
-                  <li>نکته</li>
-
-                </ul>
-              </div>
-
-
-
-            </div>
-
-          </div>
-        </form>
-        <div class="modal fade me-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <p>Modal body text goes here.</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <!--                <button type="button" class="btn btn-primary">Save changes</button>-->
-              </div>
-            </div>
-          </div>
+        <div class="  p-0 m-0 border rounded  mb-3 d-none d-lg-block" style="min-height: 600px" v-if="true">
+          <table class="table mb-0 rounded-top text-muted">
+            <thead class="bg-light rounded-top">
+            <tr class=" rounded-top">
+              <th scope="col" class=" rounded-top">شناسه</th>
+              <th scope="col">موضوع درخواست</th>
+              <th scope="col">متن درخواست</th>
+              <th scope="col">وضعیت</th>
+              <th scope="col">آخرین بروز رسانی</th>
+              <th class=" rounded-top" scope="col"></th>
+            </tr>
+            </thead>
+            <tbody class="rounded-top">
+            <tr v-for="item in tickets">
+              <td></td>
+              <td class="text-primary">{{ item.subject }}</td>
+              <td>{{ item.ticket_id }}</td>
+              <td>{{ item.status_label }} تومان</td>
+              <td>{{ item.date }} تومان</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
-
       </div>
 
     </div>
@@ -80,7 +44,30 @@
 
 <script>
 export default {
-  name: "Support"
+  name: "Support",
+  data(){
+
+   return  {
+      tickets: ''
+    }
+  },
+  mounted() {
+    axios.create({
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': localStorage.getItem('token'),
+      }
+    })
+        .get('https://server.elfiro.com/api/v1/client/tickets')
+        .then((response) => {
+          this.tickets = response.data.data.tickets.records;
+          // this.tickets = [ { "subject": "aaaa", "priority_label": "زیاد", "status_label": "در انتظار پاسخ", "date": "دوشنبه, 08 فروردین 1401" }, { "subject": "aaaa", "priority_label": "متوسط", "status_label": "پاسخ مشتری", "date": "دوشنبه, 08 فروردین 1401" } ];
+          console.log('nn', this.tickets)
+        }).catch((error) => {
+      console.log(error)
+    });
+  }
 }
 </script>
 
