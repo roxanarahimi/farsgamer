@@ -2,6 +2,7 @@
   <div class="home">
     <p class="text-primary">بیشترین معامله</p>
 
+    <input type="hidden" id="cat" value="all">
     <div class="row justify-content-between">
       <div v-for="item in data" class=" col-4 col-md-3 log-g-2 col-xl-1 mb-3 text-center">
         <img class="rounded" :src="item.logo" style="width: 100%; height: auto" :title="item.title">
@@ -11,12 +12,12 @@
       </div>
     </div>
     <div class="row">
-      <div v-for="item in orders" :key="item" class="mb-3 col-12 col-lg-6 col-xl-4 col-xxl-3">
-        <router-link :to="'/ad/'+item.id" class="card ">
+      <div  v-for="item in orders" :key="item"  class="mb-3 col-12 col-lg-6 col-xl-4 col-xxl-3">
+        <router-link :to="'/ad/'+item.id" class="card "  >
           <div class="card-body px-0 py-3">
 
             <div class="d-flex p-2">
-              <img :src="item.image" style="width: 80px; height: 80px" class="mb-2 rounded-circle" alt="">
+              <img :src="item.category.default_image" style="width: 80px; height: 80px" class="mb-2 rounded-circle" alt="">
 
               <div class=" me-2">
                 <p class="fw-bold  text-center mb-0 mt-3">{{ item.name }}</p>
@@ -25,7 +26,7 @@
               </div>
             </div>
             <div class="mx-2">
-              <img :src="item.category.default_image" class="w-100 rounded" alt="">
+              <img :src="item.image" class="w-100 rounded" alt="">
 
             </div>
             <p class="fw-bold text-center py-2 px-4">اکانت فورتنایت از سیزن دو اکانت فورتنایت از سیزن دو </p>
@@ -49,14 +50,15 @@
 export default {
   data() {
     return {
-
       data: [],
-      orders: []
+      orders: [],
+      cat: '',
     }
   },
   mounted() {
     this.getData();
     this.getOrders();
+    this.cat = document.getElementById('cat')?.value
   }
   ,
   methods: {

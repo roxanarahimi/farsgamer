@@ -10,7 +10,7 @@
           </div>
 
         </div>
-        <div v-if="img1" class="col-10   pb-2">
+        <div class="col-10 pb-2">
           <div class="card h-100">
             <div class="card-body px-1 py-5">
               <div class="bg-light" style=" position: absolute;top: 200px; right:10px;
@@ -41,7 +41,7 @@
       <div class="card ">
         <a :href="order?.user?.user_profile" class="card-header d-flex">
 
-          <img :src="order.image" style="width: 60px; height: 60px; border-radius: 50%" alt="">
+          <img :src="order?.user?.user_profile" style="width: 60px; height: 60px; border-radius: 50%" alt="">
 
           <div class="pe-3">
             <p class="mb-0 mt-2">{{ order?.user?.user_name }}</p>

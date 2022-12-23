@@ -2,9 +2,9 @@
   <div id="side_bar" class=" side_bar d-none d-lg-block" style="min-height: 100vh; position: page !important">
     <div class="card border-0 border-start rounded-0 me-5 px-3 px-xl-5 px-3 pt-4 pb-5 me-2">
 
-      <div v-if="this.$route.name === 'Home' || this.$route.name === 'Advertisement'" class="row">
+      <div v-if="this.$route.name === 'Home' || this.$route.name === 'Advertisement' || this.$route.name === 'Faq' || this.$route.name === 'Contact' || this.$route.name === 'Laws'" class="row">
         <div class="text-center">
-          <img src="/img/avatar.png" style="width: 92px; height:92px;" alt="">
+          <img :src="user.profile_image" style="border-radius:50% ;width: 92px; height:92px;" alt="">
           <router-link to="/dashboard" v-if="user" class=" h4 fw-bolder text-primary text-center mt-2 d-block">
             {{ user.name }}
           </router-link>
@@ -25,7 +25,7 @@
             class="mt-2 mb-1 d-inline-block"> دسته بندی محصولات</b>
         </div>
         <div v-for="item in categories">
-          <div v-if="!showSubCategories" class="d-flex" @click="showCategoryDetails(item.id)">
+          <div v-if="!showSubCategories"  class="d-flex" @click="showCategoryDetails(item.id,item.title)">
             <img style="width: 40px; height: 40px" :src="item.logo" alt="">
             <p class="mb-0 mt-2 cursor">{{ item.title }}</p>
           </div>
@@ -110,9 +110,9 @@
       <hr class="text-muted">
       <div class="flex-wrap">
         <a class="text-black-50 ms-3" href="">پشتیبانی </a>
-        <a class="text-black-50 ms-3" href="">قوانین </a>
-        <a class="text-black-50 ms-3" href="">ارتباط باما </a>
-        <a class="text-black-50 ms-3" href="">سوالات متداول </a>
+        <router-link to="/laws" class="text-black-50 ms-3" href="">قوانین </router-link>
+        <router-link to="/contact" class="text-black-50 ms-3" href="">ارتباط باما </router-link>
+        <router-link to="/faq" class="text-black-50 ms-3" href="">سوالات متداول </router-link>
         <a class="text-black-50 ms-3" href="">درباره ما </a>
       </div>
       <hr class="text-muted">
@@ -182,8 +182,11 @@ export default {
           });
     },
 
-    showCategoryDetails(id) {
+    showCategoryDetails(id,title) {
 
+      if(document.getElementById('cat') !== null){
+        document.getElementById('cat').value = title;
+      }
       this.showSubCategories = true;
       document.querySelectorAll('.sub_category').forEach((sub) => {
         sub.classList.add('d-none');
